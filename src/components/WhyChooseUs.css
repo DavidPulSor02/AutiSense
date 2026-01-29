@@ -1,0 +1,159 @@
+/* ==============================
+   SECCIÓN
+============================== */
+
+.why-section {
+    padding: 140px 6vw;
+    background:
+        radial-gradient(circle at 15% 20%, #eef4ff 0%, transparent 45%),
+        radial-gradient(circle at 85% 30%, #f8fafc 0%, transparent 45%),
+        linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+}
+
+/* ==============================
+   TÍTULO
+============================== */
+
+.why-title {
+    text-align: center;
+    font-size: 44px;
+    font-weight: 700;
+    margin-bottom: 90px;
+    color: #0f172a;
+    letter-spacing: -0.6px;
+}
+
+.why-title span {
+    color: #0A5C8F;
+}
+
+/* ==============================
+   CONTENEDOR HORIZONTAL
+============================== */
+
+.why-row {
+    max-width: 1300px;
+    margin: 0 auto;
+
+    display: flex;
+    gap: 24px;
+
+    align-items: stretch;
+}
+
+/* ==============================
+   CARD
+============================== */
+
+.why-card {
+    position: relative;
+    flex: 1;
+    min-height: 420px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 32px 28px;
+    border-radius: 32px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 24px 60px rgba(15, 23, 42, 0.08),
+        0 8px 20px rgba(15, 23, 42, 0.05);
+
+    cursor: pointer;
+    overflow: hidden;
+
+    transition:
+        box-shadow 0.4s ease,
+        background 0.4s ease;
+}
+
+.why-card.active {
+    box-shadow:
+        0 32px 90px rgba(10, 92, 143, 0.28),
+        0 14px 30px rgba(15, 23, 42, 0.12);
+}
+
+/* ==============================
+   IMAGEN
+============================== */
+
+.why-image {
+    width: 100%;
+    height: 190px;
+    object-fit: contain;
+
+    margin-bottom: 28px;
+    transition: transform 0.4s ease;
+}
+
+/* ==============================
+   TEXTO
+============================== */
+
+.why-content h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #0f172a;
+}
+
+.why-content p {
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: #475569;
+}
+
+/* ==============================
+   EFECTO ACTIVO (COLOR)
+============================== */
+
+.why-card.active::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+            rgba(10, 92, 143, 0.08),
+            rgba(146, 196, 227, 0.12));
+    z-index: 0;
+}
+
+.why-card>* {
+    position: relative;
+    z-index: 1;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 1100px) {
+    .why-row {
+        flex-direction: column;
+    }
+
+    .why-card {
+        min-height: auto;
+    }
+
+    .why-image {
+        height: 170px;
+    }
+}
+
+@media (max-width: 600px) {
+    .why-title {
+        font-size: 34px;
+        margin-bottom: 60px;
+    }
+
+    .why-content h3 {
+        font-size: 18px;
+    }
+
+    .why-content p {
+        font-size: 15px;
+    }
+}

@@ -1,0 +1,95 @@
+/* ==============================
+   SECCIÓN
+============================== */
+
+
+
+.features-section {
+    padding: 120px 24px;
+    background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+}
+
+/* ==============================
+   GRID
+============================== */
+
+.features-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
+}
+
+/* ==============================
+   CARD
+============================== */
+
+.feature-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 36px;
+
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+    transition: box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    box-shadow: 0 40px 90px rgba(37, 99, 235, 0.22);
+}
+
+/* ==============================
+   IMAGEN GRANDE
+============================== */
+
+.feature-card img {
+    width: 200px;
+    height: 250px;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 14px 36px rgba(37, 99, 235, 0.28));
+}
+
+/* ==============================
+   TEXTO
+============================== */
+
+.feature-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #0f172a;
+}
+
+.feature-card p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #475569;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 900px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 32px;
+    }
+
+    .feature-card img {
+        width: 130px;
+        height: 130px;
+    }
+}

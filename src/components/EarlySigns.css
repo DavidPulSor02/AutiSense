@@ -1,0 +1,117 @@
+/* ==============================
+   SECCIÓN
+============================== */
+
+.signals-section {
+    padding: 120px 6vw 140px;
+    background:
+        radial-gradient(circle at 15% 20%, #eef2ff 0%, transparent 40%),
+        radial-gradient(circle at 85% 30%, #f8fafc 0%, transparent 45%),
+        linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+}
+
+/* ==============================
+   TÍTULO
+============================== */
+
+.signals-title {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 72px;
+    color: #0f172a;
+    letter-spacing: -0.6px;
+}
+
+.signals-title span {
+    color: #2563eb;
+}
+
+/* ==============================
+   GRID
+============================== */
+
+.signals-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ==============================
+   CARD
+============================== */
+
+.signals-card {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border-radius: 28px;
+    padding: 48px 36px;
+    text-align: center;
+
+    box-shadow:
+        0 24px 60px rgba(15, 23, 42, 0.08),
+        0 8px 20px rgba(15, 23, 42, 0.05);
+
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.signals-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 32px 80px rgba(15, 23, 42, 0.12),
+        0 12px 28px rgba(15, 23, 42, 0.08);
+}
+
+/* ==============================
+   ICONO
+============================== */
+
+.signals-icon {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 28px;
+    border-radius: 50%;
+    background: #eff6ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signals-icon img {
+    width: 56px;
+    height: 56px;
+}
+
+/* ==============================
+   TEXTO
+============================== */
+
+.signals-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    color: #0f172a;
+}
+
+.signals-card p {
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: #475569;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 900px) {
+    .signals-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .signals-title {
+        font-size: 34px;
+    }
+}

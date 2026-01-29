@@ -1,0 +1,186 @@
+/* ==============================
+   FOOTER
+============================== */
+
+.footer {
+    background: linear-gradient(180deg,
+            #0A5C8F 0%,
+            #084c75 100%);
+    color: #cbd5f5;
+    padding: 100px 6vw 40px;
+}
+
+/* ==============================
+   CONTENEDOR
+============================== */
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+}
+
+/* ==============================
+   BRAND
+============================== */
+
+.footer-brand .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 16px;
+}
+
+.footer-brand p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #94a3b8;
+    margin-bottom: 28px;
+}
+
+/* Newsletter */
+
+.newsletter {
+    display: flex;
+    gap: 10px;
+}
+
+.newsletter input {
+    flex: 1;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+
+    background: #020617;
+    color: #e2e8f0;
+}
+
+.newsletter input::placeholder {
+    color: #64748b;
+}
+
+.newsletter button {
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+
+    background: #0A5C8F;
+    color: #ffffff;
+    font-weight: 600;
+
+    transition: background 0.3s ease;
+}
+
+.newsletter button:hover {
+    background: #084c75;
+}
+.logo img {
+    width: 82px;
+    height: 42px;
+    object-fit: contain;
+
+    
+    
+}
+/* ==============================
+   LINKS
+============================== */
+
+.footer-links h4,
+.footer-contact h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    font-size: 14.5px;
+    color: #94a3b8;
+    margin-bottom: 12px;
+    cursor: pointer;
+
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li:hover {
+    color: #ffffff;
+}
+
+/* ==============================
+   CONTACTO
+============================== */
+
+.footer-contact p {
+    font-size: 14.5px;
+    color: #94a3b8;
+    margin-bottom: 20px;
+}
+
+.socials {
+    display: flex;
+    gap: 14px;
+    margin-top: 14px;
+}
+
+.socials a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.socials a:hover {
+    background: #ffffff;
+    color: #0A5C8F;
+    transform: translateY(-3px);
+}
+
+/* ==============================
+   FOOTER BOTTOM
+============================== */
+
+.footer-bottom {
+    margin-top: 80px;
+    text-align: center;
+    font-size: 13px;
+    color: #98b4dd;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 900px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .newsletter {
+        flex-direction: column;
+    }
+
+    .newsletter button {
+        width: 100%;
+    }
+}

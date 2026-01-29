@@ -1,0 +1,22 @@
+:root {
+  --blue-light: #f2f9ff;
+  --blue-dark: #0a5c8f;
+  --white: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--blue-light);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+#hero,
+#signals,
+#security,
+#plans,
+#testimonials {
+  scroll-margin-top: 90px;
+}

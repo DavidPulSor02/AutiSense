@@ -1,0 +1,276 @@
+/* ==============================
+   SECCIÓN
+============================== */
+
+.pricing-section {
+    position: relative;
+    padding: 140px 6vw;
+
+    background:
+        radial-gradient(circle at 15% 20%,
+            rgba(7, 87, 137, 0.18),
+            transparent 45%),
+        radial-gradient(circle at 85% 30%,
+            rgba(7, 87, 137, 0.12),
+            transparent 50%),
+        linear-gradient(180deg,
+            #F2F9FF 0%,
+            #ffffff 60%);
+}
+/* ==============================
+   TÍTULO
+============================== */
+
+.pricing-title {
+    text-align: center;
+    font-size: 44px;
+    font-weight: 700;
+    margin-bottom: 90px;
+    color: #0f172a;
+    letter-spacing: -0.6px;
+}
+
+.pricing-title span {
+    color: #0A5C8F;
+}
+
+/* ==============================
+   GRID
+============================== */
+
+.pricing-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+/* ==============================
+   CARD
+============================== */
+
+.pricing-card {
+    position: relative;
+    padding: 48px 40px;
+    border-radius: 32px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 24px 60px rgba(15, 23, 42, 0.08),
+        0 8px 20px rgba(15, 23, 42, 0.05);
+
+    display: flex;
+    flex-direction: column;
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow:
+        0 36px 90px rgba(10, 92, 143, 0.25),
+        0 16px 30px rgba(15, 23, 42, 0.12);
+}
+
+/* ==============================
+   DESTACADO
+============================== */
+
+.pricing-card.featured {
+    border: 2px solid #0A5C8F;
+}
+
+.badge {
+    position: absolute;
+    top: -14px;
+    right: 24px;
+    background: #0A5C8F;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 999px;
+}
+
+/* ==============================
+   TEXTO
+============================== */
+
+.pricing-card h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #0f172a;
+}
+
+.price {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #0A5C8F;
+}
+
+.price span {
+    font-size: 15px;
+    font-weight: 500;
+    color: #475569;
+}
+
+.pricing-card ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 24px;
+}
+
+.pricing-card ul li {
+    font-size: 15.5px;
+    color: #475569;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.pricing-card ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #0A5C8F;
+    font-weight: 600;
+}
+
+.plan-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #64748b;
+    margin-bottom: 32px;
+}
+
+/* ==============================
+   BOTÓN
+============================== */   
+
+.plan-btn {
+    margin-top: auto;
+    padding: 14px 22px;
+    border-radius: 14px;
+
+    background: #f1f5f9;
+    color: #0f172a;
+
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.plan-btn:hover {
+    background: #e2e8f0;
+}
+
+.plan-btn.primary {
+    background: #0A5C8F;
+    color: #ffffff;
+}
+
+.plan-btn.primary:hover {
+    background: #084c75;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 1000px) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pricing-card {
+        max-width: 520px;
+        margin: 0 auto;
+    }
+}
+/* ==============================
+   TOGGLE FACTURACIÓN
+============================== */
+
+.billing-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 80px;
+
+    font-size: 15px;
+    color: #475569;
+}
+
+.billing-toggle span {
+    transition: color 0.3s ease;
+}
+
+.billing-toggle span.active {
+    color: #0f172a;
+    font-weight: 600;
+}
+
+.billing-toggle em {
+    color: #0A5C8F;
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* ==============================
+   SWITCH
+============================== */
+
+.toggle-switch {
+    width: 52px;
+    height: 28px;
+    border-radius: 999px;
+    background: #e2e8f0;
+    padding: 4px;
+    cursor: pointer;
+    position: relative;
+
+    transition: background 0.3s ease;
+}
+
+.toggle-switch.yearly {
+    background: #0A5C8F;
+}
+
+/* ==============================
+   THUMB
+============================== */
+
+.toggle-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+
+    position: absolute;
+    top: 4px;
+    left: 4px;
+
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==============================
+   SAVING
+============================== */
+
+.saving {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 0.75rem;
+    color: #0A5C8F;
+    font-weight: 600;
+}

@@ -1,0 +1,123 @@
+/* ==============================
+   SECCIÓN
+============================== */
+
+.testimonials-section {
+    padding: 140px 6vw;
+    background:
+        radial-gradient(circle at 20% 20%, #eef4ff 0%, transparent 40%),
+        linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+}
+
+/* ==============================
+   TÍTULO
+============================== */
+
+.testimonials-title {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 90px;
+    color: #0f172a;
+    letter-spacing: -0.6px;
+}
+
+.testimonials-title span {
+    color: #0A5C8F;
+}
+
+/* ==============================
+   GRID
+============================== */
+
+.testimonials-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+/* ==============================
+   CARD
+============================== */
+
+.testimonial-card {
+    background: #ffffff;
+    padding: 40px 36px;
+    border-radius: 28px;
+
+    box-shadow:
+        0 20px 50px rgba(15, 23, 42, 0.08),
+        0 8px 20px rgba(15, 23, 42, 0.05);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 32px 80px rgba(10, 92, 143, 0.18),
+        0 16px 30px rgba(15, 23, 42, 0.12);
+}
+
+/* ==============================
+   TEXTO
+============================== */
+
+.testimonial-text {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #475569;
+    margin-bottom: 32px;
+}
+
+/* ==============================
+   USUARIO
+============================== */
+
+.testimonial-user {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.testimonial-user img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.testimonial-user strong {
+    display: block;
+    font-size: 15px;
+    color: #0f172a;
+}
+
+.testimonial-user span {
+    font-size: 13.5px;
+    color: #64748b;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 1000px) {
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonial-card {
+        max-width: 520px;
+        margin: 0 auto;
+    }
+}

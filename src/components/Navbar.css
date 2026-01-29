@@ -1,0 +1,201 @@
+/* ==============================
+   NAVBAR BASE
+============================== */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+/* Estado al hacer scroll */
+.navbar.scrolled {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+.nav-link {
+    position: relative;
+    text-decoration: none;
+    color: #1f2937;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #0a5c8f;
+}
+
+.nav-link.active {
+    color: #0a5c8f;
+    font-weight: 600;
+}
+
+.nav-link.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 2px;
+    background: #0a5c8f;
+    border-radius: 2px;
+}
+/* ==============================
+   CONTENEDOR
+============================== */
+
+.navbar-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: padding 0.3s ease;
+}
+.navbar-brand {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand:hover .navbar-title {
+    opacity: 0.85;
+}
+/* Reduce altura al hacer scroll */
+.navbar.scrolled .navbar-container {
+    padding: 10px 24px;
+}
+
+/* ==============================
+   IZQUIERDA
+============================== */
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-logo {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.navbar-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #0a5c8f;
+}
+
+/* ==============================
+   CENTRO
+============================== */
+
+.navbar-center {
+    display: flex;
+    gap: 28px;
+}
+
+.navbar-center a {
+    text-decoration: none;
+    color: #1f2937;
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Línea animada */
+.navbar-center a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0%;
+    height: 2px;
+    background: #0a5c8f;
+    transition: width 0.3s ease;
+}
+
+.navbar-center a:hover {
+    color: #0a5c8f;
+}
+
+.navbar-center a:hover::after {
+    width: 100%;
+}
+
+/* ==============================
+   DERECHA
+============================== */
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar-lang {
+    font-size: 0.9rem;
+    color: #374151;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.navbar-lang:hover {
+    color: #0a5c8f;
+}
+
+.navbar-login {
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: #1f2937;
+    transition: color 0.3s ease;
+}
+
+.navbar-login:hover {
+    color: #0a5c8f;
+}
+
+.navbar-button {
+    background-color: #0a5c8f;
+    color: #ffffff;
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-button:hover {
+    background-color: #084c75;
+    transform: translateY(-1px);
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 900px) {
+    .navbar-center {
+        display: none;
+    }
+
+    .navbar-title {
+        font-size: 1.1rem;
+    }
+
+    .navbar-logo {
+        width: 48px;
+        height: 48px;
+    }
+}
