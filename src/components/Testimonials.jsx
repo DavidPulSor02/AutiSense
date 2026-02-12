@@ -55,6 +55,7 @@ const Testimonials = () => {
                         variants={cardAnim}
                         initial="hidden"
                         whileInView="visible"
+                        whileHover={{ y: -10 }}
                         viewport={{ once: true }}
                         custom={i}
                     >

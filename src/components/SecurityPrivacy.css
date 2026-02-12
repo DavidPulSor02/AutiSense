@@ -7,7 +7,7 @@
     padding: 120px 6vw 140px;
 
     background-image:
-     
+
         url("https://res.cloudinary.com/dilgq19i2/image/upload/v1767373968/wave1_x6bp26.png");
 
     background-size: cover;
@@ -20,12 +20,12 @@
     font-size: 42px;
     font-weight: 700;
     margin-bottom: 80px;
-    color: #0f172a;
+    color: var(--text-primary);
     letter-spacing: -0.6px;
 }
 
 .security-title span {
-    color: #0A5C8F;
+    color: var(--brand-primary);
 }
 
 /* ==============================
@@ -49,11 +49,9 @@
     position: relative;
     padding: 42px 38px;
     border-radius: 28px;
-    background: #ffffff;
+    background: var(--bg-card);
 
-    box-shadow:
-        0 24px 60px rgba(15, 23, 42, 0.08),
-        0 8px 20px rgba(15, 23, 42, 0.05);
+    box-shadow: var(--shadow-sm);
 
     transition: all 0.4s ease;
     overflow: hidden;
@@ -65,7 +63,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #0A5C8F, #92C4E3);
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
     opacity: 0;
     transition: opacity 0.4s ease;
     z-index: 0;
@@ -77,8 +75,7 @@
 
 .security-card:hover {
     transform: translateY(-10px);
-    box-shadow:
-        0 36px 90px rgba(10, 92, 143, 0.35);
+    box-shadow: var(--shadow-md);
 }
 
 /* ==============================
@@ -93,7 +90,7 @@
 .security-icon {
     font-size: 30px;
     margin-bottom: 22px;
-    color: #0A5C8F;
+    color: var(--brand-primary);
     transition: color 0.4s ease;
 }
 
@@ -101,21 +98,21 @@
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 14px;
-    color: #0f172a;
+    color: var(--text-primary);
     transition: color 0.4s ease;
 }
 
 .security-card p {
     font-size: 15.5px;
     line-height: 1.7;
-    color: #475569;
+    color: var(--text-secondary);
     transition: color 0.4s ease;
 }
 
 .security-card:hover h3,
 .security-card:hover p,
 .security-card:hover .security-icon {
-    color: #ffffff;
+    color: var(--text-light);
 }
 
 /* ==============================

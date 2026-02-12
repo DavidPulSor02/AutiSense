@@ -1,0 +1,109 @@
+/* LoadingScreen.css */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    /* Or a very light subtle background */
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+}
+
+.loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loading-content {
+    text-align: center;
+    position: relative;
+}
+
+/* Infinity Symbol Container */
+.infinity-container {
+    position: relative;
+    width: 120px;
+    height: 60px;
+    margin: 0 auto 30px;
+}
+
+/* The Infinity Path */
+.infinity-path {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+    animation: drawInfinity 2.5s ease-in-out infinite alternate;
+}
+
+/* Gradient Definition for Neurodiversity Spectrum */
+.infinity-gradient-def {
+    /* Using SVG gradient definition in JSX */
+}
+
+@keyframes drawInfinity {
+    0% {
+        stroke-dashoffset: 300;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+.loading-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    background: linear-gradient(90deg, #FF0055, #FF9900, #FFD500, #00CC44, #0066FF, #6600CC);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-top: 1rem;
+    letter-spacing: 1px;
+    opacity: 0;
+    animation: fadeInText 1s 0.5s forwards;
+}
+
+.loading-subtext {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-top: 0.5rem;
+    opacity: 0;
+    animation: fadeInText 1s 1s forwards;
+}
+
+
+@keyframes fadeInText {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Pulse effect for the whole container */
+.pulse-container {
+    animation: softPulse 2s infinite ease-in-out;
+}
+
+@keyframes softPulse {
+
+    0%,
+    100% {
+        transform: scale(0.95);
+        opacity: 0.9;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+}

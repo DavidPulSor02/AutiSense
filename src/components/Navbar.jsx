@@ -1,8 +1,20 @@
 import { useEffect, useState } from "react";
 import "./Navbar.css";
+import ThemeToggle from "./ThemeToggle.jsx";
+
 
 export default function Navbar() {
+    const [scrolled, setScrolled] = useState(false);
     const [active, setActive] = useState("");
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     useEffect(() => {
         const sections = document.querySelectorAll("section");
@@ -26,7 +38,7 @@ export default function Navbar() {
     }, []);
 
     return (
-        <header className="navbar">
+        <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
             <div className="navbar-container">
 
                 {/* IZQUIERDA */}
@@ -73,6 +85,11 @@ export default function Navbar() {
                         Testimonios
                     </a>
                 </nav>
+
+                {/* THEME TOGGLE */}
+                <div className="navbar-right">
+                    <ThemeToggle />
+                </div>
 
             </div>
         </header>
