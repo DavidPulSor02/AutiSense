@@ -1,5 +1,5 @@
 import { circIn, motion } from "framer-motion";
-import "./AboutAutisense.css";
+import "./aboutAutisense.css";
 
 /* =====================
    VARIANTS
