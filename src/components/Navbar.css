@@ -15,11 +15,11 @@
 
 /* Estado al hacer scroll */
 .navbar.scrolled {
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: var(--bg-glass);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
 }
 
 .nav-link {

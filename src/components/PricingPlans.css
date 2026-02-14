@@ -5,18 +5,9 @@
 .pricing-section {
     position: relative;
     padding: 140px 6vw;
-
-    background:
-        radial-gradient(circle at 15% 20%,
-            rgba(7, 87, 137, 0.18),
-            transparent 45%),
-        radial-gradient(circle at 85% 30%,
-            rgba(7, 87, 137, 0.12),
-            transparent 50%),
-        linear-gradient(180deg,
-            #F2F9FF 0%,
-            #ffffff 60%);
+    background: var(--bg-primary);
 }
+
 /* ==============================
    TÍTULO
 ============================== */
@@ -26,12 +17,12 @@
     font-size: 44px;
     font-weight: 700;
     margin-bottom: 90px;
-    color: #0f172a;
+    color: var(--text-primary);
     letter-spacing: -0.6px;
 }
 
 .pricing-title span {
-    color: #0A5C8F;
+    color: var(--brand-primary);
 }
 
 /* ==============================
@@ -56,11 +47,10 @@
     padding: 48px 40px;
     border-radius: 32px;
 
-    background: #ffffff;
+    background: var(--bg-card);
 
-    box-shadow:
-        0 24px 60px rgba(15, 23, 42, 0.08),
-        0 8px 20px rgba(15, 23, 42, 0.05);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
 
     display: flex;
     flex-direction: column;
@@ -82,15 +72,15 @@
 ============================== */
 
 .pricing-card.featured {
-    border: 2px solid #0A5C8F;
+    border: 2px solid var(--brand-primary);
 }
 
 .badge {
     position: absolute;
     top: -14px;
     right: 24px;
-    background: #0A5C8F;
-    color: #ffffff;
+    background: var(--brand-primary);
+    color: white;
     font-size: 13px;
     font-weight: 600;
     padding: 6px 14px;
@@ -105,20 +95,20 @@
     font-size: 22px;
     font-weight: 600;
     margin-bottom: 12px;
-    color: #0f172a;
+    color: var(--text-primary);
 }
 
 .price {
     font-size: 36px;
     font-weight: 700;
     margin-bottom: 24px;
-    color: #0A5C8F;
+    color: var(--brand-primary);
 }
 
 .price span {
     font-size: 15px;
     font-weight: 500;
-    color: #475569;
+    color: var(--text-muted);
 }
 
 .pricing-card ul {
@@ -129,7 +119,7 @@
 
 .pricing-card ul li {
     font-size: 15.5px;
-    color: #475569;
+    color: var(--text-secondary);
     margin-bottom: 10px;
     padding-left: 20px;
     position: relative;
@@ -139,28 +129,28 @@
     content: "✓";
     position: absolute;
     left: 0;
-    color: #0A5C8F;
+    color: var(--brand-primary);
     font-weight: 600;
 }
 
 .plan-desc {
     font-size: 15px;
     line-height: 1.7;
-    color: #64748b;
+    color: var(--text-muted);
     margin-bottom: 32px;
 }
 
 /* ==============================
    BOTÓN
-============================== */   
+============================== */
 
 .plan-btn {
     margin-top: auto;
     padding: 14px 22px;
     border-radius: 14px;
 
-    background: #f1f5f9;
-    color: #0f172a;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
 
     font-weight: 600;
     border: none;
@@ -170,16 +160,16 @@
 }
 
 .plan-btn:hover {
-    background: #e2e8f0;
+    background: var(--border-light);
 }
 
 .plan-btn.primary {
-    background: #0A5C8F;
-    color: #ffffff;
+    background: var(--brand-primary);
+    color: white;
 }
 
 .plan-btn.primary:hover {
-    background: #084c75;
+    background: var(--brand-hover);
 }
 
 /* ==============================
@@ -196,6 +186,7 @@
         margin: 0 auto;
     }
 }
+
 /* ==============================
    TOGGLE FACTURACIÓN
 ============================== */
@@ -208,7 +199,7 @@
     margin-bottom: 80px;
 
     font-size: 15px;
-    color: #475569;
+    color: var(--text-muted);
 }
 
 .billing-toggle span {
@@ -216,12 +207,12 @@
 }
 
 .billing-toggle span.active {
-    color: #0f172a;
+    color: var(--text-primary);
     font-weight: 600;
 }
 
 .billing-toggle em {
-    color: #0A5C8F;
+    color: var(--brand-primary);
     font-style: normal;
     font-weight: 600;
 }
@@ -234,7 +225,7 @@
     width: 52px;
     height: 28px;
     border-radius: 999px;
-    background: #e2e8f0;
+    background: var(--bg-secondary);
     padding: 4px;
     cursor: pointer;
     position: relative;
@@ -243,7 +234,7 @@
 }
 
 .toggle-switch.yearly {
-    background: #0A5C8F;
+    background: var(--brand-primary);
 }
 
 /* ==============================
@@ -271,6 +262,6 @@
     display: inline-block;
     margin-top: 6px;
     font-size: 0.75rem;
-    color: #0A5C8F;
+    color: var(--brand-primary);
     font-weight: 600;
 }

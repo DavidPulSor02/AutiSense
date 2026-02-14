@@ -4,9 +4,7 @@
 
 .testimonials-section {
     padding: 140px 6vw;
-    background:
-        radial-gradient(circle at 20% 20%, #eef4ff 0%, transparent 40%),
-        linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    background: var(--bg-primary);
 }
 
 /* ==============================
@@ -18,12 +16,12 @@
     font-size: 42px;
     font-weight: 700;
     margin-bottom: 90px;
-    color: #0f172a;
+    color: var(--text-primary);
     letter-spacing: -0.6px;
 }
 
 .testimonials-title span {
-    color: #0A5C8F;
+    color: var(--brand-primary);
 }
 
 /* ==============================
@@ -44,21 +42,22 @@
 ============================== */
 
 .testimonial-card {
-    background: white;
+    background: var(--bg-card);
     padding: 2rem;
     border-radius: 24px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    box-shadow: var(--shadow-sm);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: box-shadow 0.3s ease;
-    border: 1px solid rgba(0, 0, 0, 0.03);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 1px solid var(--border-light);
     position: relative;
     overflow: hidden;
 }
 
 .testimonial-card:hover {
-    box-shadow: 0 16px 30px rgba(15, 23, 42, 0.12);
+    box-shadow: var(--shadow-md);
+    border-color: var(--brand-primary);
 }
 
 /* ==============================
@@ -68,7 +67,7 @@
 .testimonial-text {
     font-size: 16px;
     line-height: 1.7;
-    color: #475569;
+    color: var(--text-secondary);
     margin-bottom: 32px;
 }
 
@@ -92,12 +91,12 @@
 .testimonial-user strong {
     display: block;
     font-size: 15px;
-    color: #0f172a;
+    color: var(--text-primary);
 }
 
 .testimonial-user span {
     font-size: 13.5px;
-    color: #64748b;
+    color: var(--text-muted);
 }
 
 /* ==============================

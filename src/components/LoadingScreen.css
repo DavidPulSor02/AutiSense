@@ -5,7 +5,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: #ffffff;
+    background: var(--bg-primary);
     /* Or a very light subtle background */
     z-index: 9999;
     display: flex;
@@ -45,9 +45,6 @@
 }
 
 /* Gradient Definition for Neurodiversity Spectrum */
-.infinity-gradient-def {
-    /* Using SVG gradient definition in JSX */
-}
 
 @keyframes drawInfinity {
     0% {
@@ -76,7 +73,7 @@
 .loading-subtext {
     font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
-    color: #6b7280;
+    color: var(--text-muted);
     margin-top: 0.5rem;
     opacity: 0;
     animation: fadeInText 1s 1s forwards;

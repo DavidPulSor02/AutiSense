@@ -4,15 +4,13 @@
      ============================ */
   --bg-primary: #ffffff;
   --bg-secondary: #f2f9ff;
-  /* Light blue accent background */
   --bg-card: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.9);
 
   --text-primary: #1f2937;
-  /* Gray 800 */
   --text-secondary: #374151;
-  /* Gray 700 */
+  --text-muted: #64748b;
   --text-accent: #0a5c8f;
-  /* Brand Blue Dark */
   --text-light: #ffffff;
 
   --brand-primary: #0a5c8f;
@@ -23,7 +21,6 @@
   --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 8px 20px rgba(37, 99, 235, 0.25);
 
-  /* Legacy/Direct mappings if needed, or aliases */
   --blue-light: #f2f9ff;
   --blue-dark: #0a5c8f;
   --white: #ffffff;
@@ -34,32 +31,26 @@
      DARK THEME
      ============================ */
   --bg-primary: #0f172a;
-  /* Slate 900 */
   --bg-secondary: #1e293b;
-  /* Slate 800 */
   --bg-card: #1e293b;
+  --bg-glass: rgba(15, 23, 42, 0.8);
 
   --text-primary: #f8fafc;
-  /* Slate 50 */
   --text-secondary: #cbd5e1;
-  /* Slate 300 */
+  --text-muted: #94a3b8;
   --text-accent: #38bdf8;
-  /* Sky 400 - Lighter for dark mode contrast */
 
   --brand-primary: #38bdf8;
-  /* Adjusted for dark mode visibility */
   --brand-hover: #0ea5e9;
   --brand-secondary: #60a5fa;
 
   --border-light: rgba(255, 255, 255, 0.1);
-  --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 8px 20px rgba(56, 189, 248, 0.2);
+  --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 12px 40px rgba(56, 189, 248, 0.15);
 
   --blue-light: #1e293b;
-  /* Mapping legacy var to dark */
   --blue-dark: #38bdf8;
   --white: #0f172a;
-  /* Mapping white to dark bg in some contexts, strictly speaking risky but useful for simple swaps */
 }
 
 body {
