@@ -173,20 +173,54 @@
     color: var(--brand-primary);
 }
 
-.navbar-button {
-    background-color: var(--brand-primary);
-    color: var(--text-light);
+.nav-btn-primary {
+    background: var(--brand-primary);
+    color: white;
+    border: none;
     padding: 8px 18px;
     border-radius: 999px;
-    font-size: 0.9rem;
     font-weight: 600;
-    text-decoration: none;
-    transition: background 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.navbar-button:hover {
-    background-color: var(--brand-hover);
-    transform: translateY(-1px);
+.nav-btn-primary:hover {
+    background: var(--brand-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.nav-btn-outline {
+    background: transparent;
+    border: 1px solid var(--border-light);
+    color: var(--text-primary);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-btn-outline:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: var(--text-primary);
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+[data-theme='dark'] .nav-btn-outline:hover {
+    background: rgba(255, 255, 255, 0.05);
 }
 
 /* ==============================

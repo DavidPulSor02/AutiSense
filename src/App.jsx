@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './index.css'
 import Navbar from './components/Navbar.jsx'
 import Hero from './components/Hero.jsx'
@@ -19,8 +17,16 @@ import ScrollProgress from './components/ScrollProgress.jsx';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState(null);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
 
   useEffect(() => {
+    // Check for user session
+    const savedUser = localStorage.getItem("user");
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+
     // Simulate loading process
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -36,7 +42,12 @@ function App() {
       {!isLoading && (
         <div className="animate-fade-in">
           <ScrollProgress />
-          <Navbar />
+          <Navbar
+            user={user}
+            setUser={setUser}
+            isAuthOpen={isAuthOpen}
+            setIsAuthOpen={setIsAuthOpen}
+          />
           <Hero />
 
           <ScrollReveal variant="slideUp" delay={0.2}>
@@ -60,7 +71,10 @@ function App() {
           </ScrollReveal>
 
           <ScrollReveal variant="fadeIn" delay={0.2}>
-            <PricingPlans />
+            <PricingPlans
+              user={user}
+              onAuthRequired={() => setIsAuthOpen(true)}
+            />
           </ScrollReveal>
 
           <ScrollReveal variant="slideUp" delay={0.2}>

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import "./PricingPlans.css";
+import PaymentModal from "./PaymentModal";
 
 const cardAnim = {
     hidden: { opacity: 0, y: 30 },
@@ -15,18 +16,64 @@ const cardAnim = {
     })
 };
 
-const PricingPlans = () => {
+const PricingPlans = ({ user, onAuthRequired }) => {
     const [billing, setBilling] = useState("monthly");
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedPlan, setSelectedPlan] = useState(null);
 
-    const basePrices = {
-        esencial: 299,
-        avanzado: 599,
-        profesional: 999
+    const plans = {
+        esencial: {
+            name: "Esencial",
+            price: 299,
+            desc: "Ideal para padres que desean una detección preventiva temprana desde casa.",
+            features: [
+                "Evaluación inicial con IA",
+                "Reporte básico de resultados",
+                "Seguimiento general del desarrollo"
+            ]
+        },
+        avanzado: {
+            name: "Avanzado",
+            price: 599,
+            desc: "Seguimiento continuo y comparativo del desarrollo.",
+            features: [
+                "Evaluaciones periódicas con IA",
+                "Reportes comparativos",
+                "Alertas tempranas",
+                "Historial de desarrollo"
+            ],
+            featured: true
+        },
+        profesional: {
+            name: "Profesional",
+            price: 999,
+            desc: "Diseñado para clínicas y profesionales de la salud.",
+            features: [
+                "Análisis clínico avanzado",
+                "Reportes exportables",
+                "Seguimiento multi-paciente",
+                "Acceso para especialistas"
+            ]
+        }
     };
 
-    const getPrice = (price) => {
-        if (billing === "monthly") return price;
-        return Math.round(price * 12 * 0.8); // -20% anual
+    const getPriceValue = (basePrice) => {
+        if (billing === "monthly") return basePrice;
+        return Math.round(basePrice * 12 * 0.8); // -20% anual
+    };
+
+    const handleCheckout = (planKey) => {
+        if (!user) {
+            onAuthRequired();
+            return;
+        }
+
+        const planData = plans[planKey];
+        setSelectedPlan({
+            name: planData.name,
+            price: getPriceValue(planData.price)
+        });
+        setIsModalOpen(true);
     };
 
     const periodLabel = billing === "monthly" ? "/ mes" : "/ año";
@@ -75,102 +122,56 @@ const PricingPlans = () => {
             </div>
 
             <div className="pricing-grid">
+                {Object.keys(plans).map((key, index) => {
+                    const plan = plans[key];
+                    const currentPrice = getPriceValue(plan.price);
 
-                {/* PLAN ESENCIAL */}
-                <motion.div
-                    className="pricing-card"
-                    variants={cardAnim}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    custom={0}
-                >
-                    <h3>Esencial</h3>
+                    return (
+                        <motion.div
+                            key={key}
+                            className={`pricing-card ${plan.featured ? "featured" : ""}`}
+                            variants={cardAnim}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            custom={index}
+                        >
+                            {plan.featured && <div className="badge">Recomendado</div>}
 
-                    <div className="price">
-                        ${getPrice(basePrices.esencial)}
-                        <span>{periodLabel}</span>
-                    </div>
+                            <h3>{plan.name}</h3>
 
-                    <ul>
-                        <li>Evaluación inicial con IA</li>
-                        <li>Reporte básico de resultados</li>
-                        <li>Seguimiento general del desarrollo</li>
-                    </ul>
+                            <div className="price">
+                                ${currentPrice}
+                                <span>{periodLabel}</span>
+                            </div>
 
-                    <p className="plan-desc">
-                        Ideal para padres que desean una detección preventiva
-                        temprana desde casa.
-                    </p>
+                            <ul>
+                                {plan.features.map((feature, i) => (
+                                    <li key={i}>{feature}</li>
+                                ))}
+                            </ul>
 
-                    <button className="plan-btn">Comenzar</button>
-                </motion.div>
+                            <p className="plan-desc">{plan.desc}</p>
 
-                {/* PLAN AVANZADO */}
-                <motion.div
-                    className="pricing-card featured"
-                    variants={cardAnim}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    custom={1}
-                >
-                    <div className="badge">Recomendado</div>
-
-                    <h3>Avanzado</h3>
-
-                    <div className="price">
-                        ${getPrice(basePrices.avanzado)}
-                        <span>{periodLabel}</span>
-                    </div>
-
-                    <ul>
-                        <li>Evaluaciones periódicas con IA</li>
-                        <li>Reportes comparativos</li>
-                        <li>Alertas tempranas</li>
-                        <li>Historial de desarrollo</li>
-                    </ul>
-
-                    <p className="plan-desc">
-                        Seguimiento continuo y comparativo del desarrollo.
-                    </p>
-
-                    <button className="plan-btn primary">
-                        Comenzar ahora
-                    </button>
-                </motion.div>
-
-                {/* PLAN PROFESIONAL */}
-                <motion.div
-                    className="pricing-card"
-                    variants={cardAnim}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    custom={2}
-                >
-                    <h3>Profesional</h3>
-
-                    <div className="price">
-                        ${getPrice(basePrices.profesional)}
-                        <span>{periodLabel}</span>
-                    </div>
-
-                    <ul>
-                        <li>Análisis clínico avanzado</li>
-                        <li>Reportes exportables</li>
-                        <li>Seguimiento multi-paciente</li>
-                        <li>Acceso para especialistas</li>
-                    </ul>
-
-                    <p className="plan-desc">
-                        Diseñado para clínicas y profesionales de la salud.
-                    </p>
-
-                    <button className="plan-btn">Comenzar</button>
-                </motion.div>
-
+                            <button
+                                className={`plan-btn ${plan.featured ? "primary" : ""}`}
+                                onClick={() => handleCheckout(key)}
+                            >
+                                Comenzar
+                            </button>
+                        </motion.div>
+                    );
+                })}
             </div>
+
+            {/* MODAL DE PAGO SIMULADO */}
+            <PaymentModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                plan={selectedPlan?.name}
+                price={selectedPlan?.price}
+                period={periodLabel}
+            />
         </section>
     );
 };
