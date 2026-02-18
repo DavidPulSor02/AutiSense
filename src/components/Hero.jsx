@@ -40,17 +40,22 @@ export default function Hero() {
         hidden: {},
         visible: {
             transition: {
-                staggerChildren: 0.15
+                staggerChildren: 0.2
             }
         }
     };
 
     const itemVariants = {
-        hidden: { opacity: 0, y: 30 },
+        hidden: { opacity: 0, y: 40, filter: "blur(10px)" },
         visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.8, ease: "easeOut" }
+            filter: "blur(0px)",
+            transition: {
+                type: "spring",
+                stiffness: 100,
+                damping: 20
+            }
         }
     };
 
@@ -66,7 +71,11 @@ export default function Hero() {
                 animate="visible"
             >
                 <motion.div className="badge-container" variants={itemVariants}>
-                    <span className="badge-new">Nuevo 🚀</span>
+                    <motion.span
+                        className="badge-new"
+                        animate={{ opacity: [0.5, 1, 0.5] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                    >Nuevo 🚀</motion.span>
                     <span className="badge-text">AutiSense 2.0 ya está aquí</span>
                 </motion.div>
 
@@ -81,14 +90,23 @@ export default function Hero() {
                 </motion.p>
 
                 <motion.div className="hero-actions" variants={itemVariants}>
-                    <button className="btn-primary">
+                    <motion.button
+                        className="btn-primary"
+                        whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(37, 99, 235, 0.4)" }}
+                        whileTap={{ scale: 0.95 }}
+                    >
                         Comenzar Evaluación
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-                    </button>
-                    <button className="btn-secondary" onClick={() => setIsVideoOpen(true)}>
+                    </motion.button>
+                    <motion.button
+                        className="btn-secondary"
+                        onClick={() => setIsVideoOpen(true)}
+                        whileHover={{ scale: 1.05, background: "rgba(255, 255, 255, 0.1)" }}
+                        whileTap={{ scale: 0.95 }}
+                    >
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="play-icon"><path d="M8 5v14l11-7z" /></svg>
                         Ver Video Demo
-                    </button>
+                    </motion.button>
                 </motion.div>
 
                 <motion.div className="trusted-by" variants={itemVariants}>
@@ -104,9 +122,9 @@ export default function Hero() {
             <motion.div
                 className="hero-image"
                 style={{ rotateX, rotateY }}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.3 }}
+                initial={{ opacity: 0, scale: 0.9, rotateY: -10 }}
+                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                transition={{ duration: 1.2, delay: 0.4, type: "spring" }}
             >
                 <div className="image-wrapper">
                     <div className="image-glow"></div>
@@ -119,7 +137,7 @@ export default function Hero() {
                 {/* Floating Cards with Glassmorphism */}
                 <motion.div
                     className="floating-card card-top"
-                    animate={{ y: [0, -12, 0] }}
+                    animate={{ y: [0, -15, 0], x: [0, 5, 0] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 >
                     <div className="card-icon check">✅</div>
@@ -131,7 +149,7 @@ export default function Hero() {
 
                 <motion.div
                     className="floating-card card-bottom"
-                    animate={{ y: [0, 15, 0] }}
+                    animate={{ y: [0, 20, 0], x: [0, -8, 0] }}
                     transition={{ duration: 5, repeat: Infinity, delay: 1, ease: "easeInOut" }}
                 >
                     <div className="card-icon chart">📊</div>

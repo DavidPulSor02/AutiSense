@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css'
 import Navbar from './components/Navbar.jsx'
 import Hero from './components/Hero.jsx'
@@ -14,6 +15,55 @@ import LoadingScreen from './components/LoadingScreen.jsx';
 import AppShowcase from './components/AppShowcase.jsx';
 import ScrollReveal from './components/ScrollReveal.jsx';
 import ScrollProgress from './components/ScrollProgress.jsx';
+import NotFound from './components/NotFound.jsx';
+
+// Main Landing Page Component
+const HomePage = ({ user, setUser, isAuthOpen, setIsAuthOpen }) => (
+  <div className="animate-fade-in">
+    <ScrollProgress />
+    <Navbar
+      user={user}
+      setUser={setUser}
+      isAuthOpen={isAuthOpen}
+      setIsAuthOpen={setIsAuthOpen}
+    />
+    <Hero />
+
+    <ScrollReveal variant="slideUp" delay={0.2}>
+      <AppShowcase />
+    </ScrollReveal>
+
+    <ScrollReveal variant="fadeIn" delay={0.3}>
+      <AboutAutisense />
+    </ScrollReveal>
+
+    <ScrollReveal variant="slideLeft" delay={0.2}>
+      <EarlySigns />
+    </ScrollReveal>
+
+    <ScrollReveal variant="scale" delay={0.2}>
+      <SecurityPrivacy />
+    </ScrollReveal>
+
+    <ScrollReveal variant="slideRight" delay={0.2}>
+      <WhyChooseUs />
+    </ScrollReveal>
+
+    <ScrollReveal variant="fadeIn" delay={0.2}>
+      <PricingPlans
+        user={user}
+        onAuthRequired={() => setIsAuthOpen(true)}
+      />
+    </ScrollReveal>
+
+    <ScrollReveal variant="slideUp" delay={0.2}>
+      <Testimonials />
+    </ScrollReveal>
+
+    <Footer />
+    <Chatbot />
+  </div>
+);
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -36,56 +86,25 @@ function App() {
   }, []);
 
   return (
-    <>
+    <BrowserRouter>
       <LoadingScreen isLoading={isLoading} />
 
       {!isLoading && (
-        <div className="animate-fade-in">
-          <ScrollProgress />
-          <Navbar
-            user={user}
-            setUser={setUser}
-            isAuthOpen={isAuthOpen}
-            setIsAuthOpen={setIsAuthOpen}
-          />
-          <Hero />
-
-          <ScrollReveal variant="slideUp" delay={0.2}>
-            <AppShowcase />
-          </ScrollReveal>
-
-          <ScrollReveal variant="fadeIn" delay={0.3}>
-            <AboutAutisense />
-          </ScrollReveal>
-
-          <ScrollReveal variant="slideLeft" delay={0.2}>
-            <EarlySigns />
-          </ScrollReveal>
-
-          <ScrollReveal variant="scale" delay={0.2}>
-            <SecurityPrivacy />
-          </ScrollReveal>
-
-          <ScrollReveal variant="slideRight" delay={0.2}>
-            <WhyChooseUs />
-          </ScrollReveal>
-
-          <ScrollReveal variant="fadeIn" delay={0.2}>
-            <PricingPlans
+        <Routes>
+          <Route path="/" element={
+            <HomePage
               user={user}
-              onAuthRequired={() => setIsAuthOpen(true)}
+              setUser={setUser}
+              isAuthOpen={isAuthOpen}
+              setIsAuthOpen={setIsAuthOpen}
             />
-          </ScrollReveal>
+          } />
 
-          <ScrollReveal variant="slideUp" delay={0.2}>
-            <Testimonials />
-          </ScrollReveal>
-
-          <Footer />
-          <Chatbot />
-        </div>
+          {/* Catch-all 404 Route */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       )}
-    </>
+    </BrowserRouter>
   );
 }
 export default App;

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import "./Navbar.css";
 import ThemeToggle from "./ThemeToggle.jsx";
 import AuthModal from "./AuthModal.jsx";
+import AutiSenseLogo from "./AutiSenseLogo.jsx";
 
 export default function Navbar({ user, setUser, isAuthOpen, setIsAuthOpen }) {
     const [scrolled, setScrolled] = useState(false);
@@ -43,58 +45,68 @@ export default function Navbar({ user, setUser, isAuthOpen, setIsAuthOpen }) {
         return () => observer.disconnect();
     }, []);
 
+    const navLinks = [
+        { id: "hero", label: "Nosotros" },
+        { id: "earlysings", label: "Señales" },
+        { id: "security", label: "Seguridad" },
+        { id: "pricingplans", label: "Planes" },
+        { id: "testimonials", label: "Testimonios" }
+    ];
+
+    const containerVariants = {
+        hidden: { opacity: 0, y: -20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                staggerChildren: 0.1,
+                duration: 0.5,
+                ease: "easeOut"
+            }
+        }
+    };
+
+    const linkVariants = {
+        hidden: { opacity: 0, y: -10 },
+        visible: { opacity: 1, y: 0 }
+    };
+
     return (
         <>
-            <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
+            <motion.header
+                className={`navbar ${scrolled ? "scrolled" : ""}`}
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+            >
                 <div className="navbar-container">
 
                     {/* IZQUIERDA */}
-                    <div className="navbar-left">
+                    <motion.div className="navbar-left" variants={linkVariants}>
                         <a href="#hero" className="navbar-brand">
+                            <AutiSenseLogo size={scrolled ? 34 : 42} />
                             <span className="navbar-title">AutiSense</span>
                         </a>
-                    </div>
+                    </motion.div>
 
                     {/* NAVEGACIÓN */}
                     <nav className="navbar-center">
-                        <a
-                            href="#hero"
-                            className={`nav-link ${active === "hero" ? "active" : ""}`}
-                        >
-                            Nosotros
-                        </a>
-
-                        <a
-                            href="#earlysings"
-                            className={`nav-link ${active === "earlysings" ? "active" : ""}`}
-                        >
-                            Señales
-                        </a>
-
-                        <a
-                            href="#security"
-                            className={`nav-link ${active === "security" ? "active" : ""}`}
-                        >
-                            Seguridad
-                        </a>
-
-                        <a
-                            href="#pricingplans"
-                            className={`nav-link ${active === "pricingplans" ? "active" : ""}`}
-                        >
-                            Planes
-                        </a>
-
-                        <a
-                            href="#testimonials"
-                            className={`nav-link ${active === "testimonials" ? "active" : ""}`}
-                        >
-                            Testimonios
-                        </a>
+                        {navLinks.map((link) => (
+                            <motion.a
+                                key={link.id}
+                                href={`#${link.id}`}
+                                className={`nav-link ${active === link.id ? "active" : ""}`}
+                                variants={linkVariants}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                {link.label}
+                            </motion.a>
+                        ))}
                     </nav>
 
                     {/* DERECHA */}
-                    <div className="navbar-right">
+                    <motion.div className="navbar-right" variants={linkVariants}>
                         {user ? (
                             <div className="user-menu">
                                 <span className="user-name">Hola, {user.name.split(" ")[0]}</span>
@@ -103,15 +115,20 @@ export default function Navbar({ user, setUser, isAuthOpen, setIsAuthOpen }) {
                                 </button>
                             </div>
                         ) : (
-                            <button className="nav-btn-primary" onClick={() => setIsAuthOpen(true)}>
+                            <motion.button
+                                className="nav-btn-primary"
+                                onClick={() => setIsAuthOpen(true)}
+                                whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(37, 99, 235, 0.4)" }}
+                                whileTap={{ scale: 0.95 }}
+                            >
                                 Entrar
-                            </button>
+                            </motion.button>
                         )}
                         <ThemeToggle />
-                    </div>
+                    </motion.div>
 
                 </div>
-            </header>
+            </motion.header>
 
             <AuthModal
                 isOpen={isAuthOpen}

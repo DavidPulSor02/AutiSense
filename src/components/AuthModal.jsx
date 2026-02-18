@@ -25,6 +25,7 @@ const AuthModal = ({ isOpen, onClose, onAuthSuccess }) => {
         const endpoint = tab === "login" ? "/api/auth/login" : "/api/auth/register";
 
         try {
+            console.log(`Intentando ${tab} en: http://localhost:5000${endpoint}`);
             const response = await fetch(`http://localhost:5000${endpoint}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -34,16 +35,19 @@ const AuthModal = ({ isOpen, onClose, onAuthSuccess }) => {
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.message || "Algo salió mal");
+                console.error("Error de autenticación:", data);
+                throw new Error(data.message || "Credenciales incorrectas o error en el servidor");
             }
 
+            console.log("Autenticación exitosa:", data);
             localStorage.setItem("token", data.token);
             localStorage.setItem("user", JSON.stringify(data.user));
 
             onAuthSuccess(data.user);
             onClose();
         } catch (err) {
-            setError(err.message);
+            console.error("Error en el proceso de auth:", err);
+            setError(err.message === "Failed to fetch" ? "No se pudo conectar con el servidor. ¿Está encendido?" : err.message);
         } finally {
             setLoading(false);
         }

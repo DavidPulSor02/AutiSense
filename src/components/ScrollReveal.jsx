@@ -24,6 +24,19 @@ export default function ScrollReveal({
             hidden: { opacity: 0, x: 50 },
             visible: { opacity: 1, x: 0 }
         },
+        revealFromBottom: {
+            hidden: { opacity: 0, y: 100, scale: 0.95 },
+            visible: {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                transition: {
+                    type: "spring",
+                    stiffness: 50,
+                    damping: 20
+                }
+            }
+        },
         scale: {
             hidden: { opacity: 0, scale: 0.8 },
             visible: { opacity: 1, scale: 1 }
