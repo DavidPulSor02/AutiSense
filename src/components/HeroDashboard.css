@@ -1,0 +1,62 @@
+/* ========================================
+   HERO DASHBOARD CAROUSEL
+======================================== */
+
+.dash-carousel {
+    position: relative;
+    width: 100%;
+}
+
+.dash-slide-wrapper {
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.dash-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(15, 23, 42, 0.9);
+    border: none;
+    color: white;
+    font-size: 26px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 20;
+    transition: 0.3s ease;
+}
+
+.dash-arrow:hover {
+    background: #3b82f6;
+}
+
+.dash-arrow.left {
+    left: -25px;
+}
+
+.dash-arrow.right {
+    right: -25px;
+}
+
+.dash-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.dash-dot-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dash-dot-indicator.active {
+    background: #3b82f6;
+    transform: scale(1.2);
+}

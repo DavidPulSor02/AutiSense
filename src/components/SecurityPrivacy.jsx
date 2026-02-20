@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { HiShieldCheck, HiLockClosed, HiCpuChip, HiDocumentCheck } from "react-icons/hi2";
 import "./SecurityPrivacy.css";
 
 const containerAnim = {
@@ -40,7 +41,7 @@ const SecurityPrivacy = () => {
             >
 
                 <motion.div className="security-card" variants={cardAnim}>
-                    <div className="security-icon">🗄️</div>
+                    <div className="security-icon"><HiShieldCheck /></div>
                     <h3>Almacenamiento seguro</h3>
                     <p>
                         Infraestructura certificada con estándares ISO 27001,
@@ -49,7 +50,7 @@ const SecurityPrivacy = () => {
                 </motion.div>
 
                 <motion.div className="security-card" variants={cardAnim}>
-                    <div className="security-icon">🔐</div>
+                    <div className="security-icon"><HiLockClosed /></div>
                     <h3>Cifrado avanzado</h3>
                     <p>
                         Los videos y datos se cifran de extremo a extremo durante
@@ -58,7 +59,7 @@ const SecurityPrivacy = () => {
                 </motion.div>
 
                 <motion.div className="security-card" variants={cardAnim}>
-                    <div className="security-icon">🧠</div>
+                    <div className="security-icon"><HiCpuChip /></div>
                     <h3>IA ética y no invasiva</h3>
                     <p>
                         Analiza conductas, no identidades. Sin reconocimiento
@@ -67,7 +68,7 @@ const SecurityPrivacy = () => {
                 </motion.div>
 
                 <motion.div className="security-card" variants={cardAnim}>
-                    <div className="security-icon">📜</div>
+                    <div className="security-icon"><HiDocumentCheck /></div>
                     <h3>Cumplimiento normativo</h3>
                     <p>
                         Cumple con HIPAA, Ley Federal de Protección de Datos

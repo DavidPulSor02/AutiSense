@@ -1,0 +1,223 @@
+/* ========================================
+   ANALISIS VIEW
+======================================== */
+
+.av-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Title */
+.av-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.av-subtitle {
+    font-size: 8px;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Requirements */
+.av-requirements {
+    background: white;
+    border-radius: 10px;
+    padding: 10px 12px;
+    border-left: 3px solid #0ea5a4;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.av-requirements h4 {
+    font-size: 9px;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0 0 6px;
+}
+
+.av-requirements ul {
+    margin: 0;
+    padding-left: 14px;
+    font-size: 8px;
+    color: #475569;
+    line-height: 1.6;
+}
+
+.av-extra-notes {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin-top: 4px;
+    font-size: 7.5px;
+    color: #94a3b8;
+}
+
+/* Selector */
+.av-selector-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 9px;
+    color: #334155;
+    font-weight: 500;
+}
+
+.av-step-num {
+    font-weight: 700;
+    font-size: 10px;
+}
+
+.av-patient-search {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 8px;
+    color: #94a3b8;
+    margin-left: auto;
+    min-width: 100px;
+}
+
+/* Upload card */
+.av-upload-card {
+    background: white;
+    border-radius: 10px;
+    padding: 10px 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.av-upload-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.av-upload-header h4 {
+    font-size: 9px;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0;
+}
+
+.av-upload-close {
+    font-size: 10px;
+    color: #94a3b8;
+    cursor: default;
+}
+
+.av-upload-subtitle {
+    font-size: 7px;
+    color: #94a3b8;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.av-dropzone {
+    border: 2px dashed #cbd5e1;
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+    background: #fafbfc;
+}
+
+.av-cloud-icon {
+    font-size: 20px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.av-dropzone p {
+    font-size: 8px;
+    color: #475569;
+    margin: 0 0 2px;
+}
+
+.av-browse {
+    color: #3b82f6;
+    font-weight: 600;
+    cursor: default;
+}
+
+.av-dropzone small {
+    font-size: 7px;
+    color: #94a3b8;
+}
+
+.av-formats {
+    font-size: 7px;
+    color: #94a3b8;
+    margin-top: 4px;
+    display: block;
+}
+
+/* Progress */
+.av-progress-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.av-progress-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    padding: 6px 10px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.av-progress-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 70px;
+}
+
+.av-progress-label {
+    font-size: 8px;
+    font-weight: 600;
+    color: #0ea5a4;
+}
+
+.av-progress-info small {
+    font-size: 7px;
+    color: #94a3b8;
+}
+
+.av-progress-bar {
+    flex: 1;
+    height: 5px;
+    background: #e2e8f0;
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.av-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #0ea5a4, #14b8a6);
+    border-radius: 99px;
+    transition: width 0.5s ease;
+}
+
+.av-progress-fill.orange {
+    background: linear-gradient(90deg, #f59e0b, #f97316);
+}
+
+.av-progress-actions {
+    display: flex;
+    gap: 6px;
+    font-size: 10px;
+    color: #94a3b8;
+}
+
+.av-cancel {
+    color: #ef4444;
+}

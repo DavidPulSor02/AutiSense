@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import "./Footer.css";
-import { 
-    FaGlobe, 
-    FaFacebookF, 
-    FaInstagram, 
-    FaTwitter 
+import {
+    FaGlobe,
+    FaFacebookF,
+    FaInstagram,
+    FaTwitter
 } from "react-icons/fa";
-
+import AutiSenseLogo from "./AutiSenseLogo.jsx";
 
 const Footer = () => {
     return (
@@ -21,7 +21,7 @@ const Footer = () => {
                     viewport={{ once: true }}
                 >
                     <div className="logo">
-                        <img src="https://res.cloudinary.com/dilgq19i2/image/upload/v1766022430/lOGO_hmvjtb.png" alt="Autisense Logo" />
+                        <AutiSenseLogo size={42} />
                         <span>AutiSense</span>
                     </div>
 

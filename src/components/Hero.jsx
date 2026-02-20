@@ -1,17 +1,27 @@
 import "./Hero.css";
-import { motion, useMotionValue, useTransform, AnimatePresence } from "framer-motion";
+import HeroDashboard from "./HeroDashboard";
+import {
+    motion,
+    useMotionValue,
+    useTransform,
+    AnimatePresence
+} from "framer-motion";
 import { useEffect, useState } from "react";
+import {
+    Rocket,
+    Play,
+    ArrowRight,
+    X
+} from "lucide-react";
 
 export default function Hero() {
-    // State for video modal
     const [isVideoOpen, setIsVideoOpen] = useState(false);
 
-    // Parallax mouse effect
     const x = useMotionValue(0);
     const y = useMotionValue(0);
 
-    const rotateX = useTransform(y, [-50, 50], [8, -8]);
-    const rotateY = useTransform(x, [-50, 50], [-8, 8]);
+    const rotateX = useTransform(y, [-50, 50], [4, -4]);
+    const rotateY = useTransform(x, [-50, 50], [-4, 4]);
 
     useEffect(() => {
         const handleMouseMove = (e) => {
@@ -19,21 +29,16 @@ export default function Hero() {
             const offsetX = e.clientX - innerWidth / 2;
             const offsetY = e.clientY - innerHeight / 2;
 
-            x.set(offsetX / 20);
-            y.set(offsetY / 20);
+            x.set(offsetX / 25);
+            y.set(offsetY / 25);
         };
 
         window.addEventListener("mousemove", handleMouseMove);
         return () => window.removeEventListener("mousemove", handleMouseMove);
     }, [x, y]);
 
-    // Prevent scrolling when modal is open
     useEffect(() => {
-        if (isVideoOpen) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "unset";
-        }
+        document.body.style.overflow = isVideoOpen ? "hidden" : "unset";
     }, [isVideoOpen]);
 
     const containerVariants = {
@@ -61,104 +66,122 @@ export default function Hero() {
 
     return (
         <section id="hero" className="hero">
-            {/* Background Elements */}
             <div className="hero-bg-glow"></div>
 
-            <motion.div
-                className="hero-content"
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-            >
-                <motion.div className="badge-container" variants={itemVariants}>
-                    <motion.span
-                        className="badge-new"
-                        animate={{ opacity: [0.5, 1, 0.5] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                    >Nuevo 🚀</motion.span>
-                    <span className="badge-text">AutiSense 2.0 ya está aquí</span>
-                </motion.div>
+            <div className="hero-inner">
+                <motion.div
+                    className="hero-content"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
+                    {/* Badge */}
+                    <motion.div className="badge-container" variants={itemVariants}>
+                        <motion.span
+                            className="badge-new"
+                            animate={{ opacity: [0.5, 1, 0.5] }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                        >
+                            <Rocket size={16} style={{ marginRight: 6 }} />
+                            Nuevo
+                        </motion.span>
+                        <span className="badge-text">
+                            AutiSense 2.0 ya está aquí
+                        </span>
+                    </motion.div>
 
-                <motion.h1 variants={itemVariants}>
-                    Descubre el Potencial <br />
-                    <span className="text-gradient">Sin Límites</span> de tu Hijo
-                </motion.h1>
+                    {/* Title */}
+                    <motion.h1 variants={itemVariants}>
+                        Descubre el Potencial <br />
+                        <span className="text-gradient">
+                            Sin Límites
+                        </span> de tu Hijo
+                    </motion.h1>
 
-                <motion.p variants={itemVariants}>
-                    La plataforma #1 impulsada por IA para la detección temprana y acompañamiento del TEA.
-                    Tecnología que entiende, apoya y conecta.
-                </motion.p>
+                    {/* Description */}
+                    <motion.p variants={itemVariants}>
+                        La plataforma #1 impulsada por IA para la detección temprana
+                        y acompañamiento del TEA. Tecnología que entiende,
+                        apoya y conecta.
+                    </motion.p>
 
-                <motion.div className="hero-actions" variants={itemVariants}>
-                    <motion.button
-                        className="btn-primary"
-                        whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(37, 99, 235, 0.4)" }}
-                        whileTap={{ scale: 0.95 }}
+                    {/* Buttons */}
+                    <motion.div
+                        className="hero-actions"
+                        variants={itemVariants}
                     >
-                        Comenzar Evaluación
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-                    </motion.button>
-                    <motion.button
-                        className="btn-secondary"
-                        onClick={() => setIsVideoOpen(true)}
-                        whileHover={{ scale: 1.05, background: "rgba(255, 255, 255, 0.1)" }}
-                        whileTap={{ scale: 0.95 }}
+                        <motion.button
+                            className="btn-primary"
+                            whileHover={{
+                                scale: 1.05,
+                                boxShadow:
+                                    "0 10px 30px rgba(37, 99, 235, 0.4)"
+                            }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            Comenzar Evaluación
+                            <ArrowRight size={18} />
+                        </motion.button>
+
+                        <motion.button
+                            className="btn-secondary"
+                            onClick={() => setIsVideoOpen(true)}
+                            whileHover={{
+                                scale: 1.05,
+                                background:
+                                    "rgba(255, 255, 255, 0.1)"
+                            }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <Play size={18} className="play-icon" />
+                            Ver Video Demo
+                        </motion.button>
+                    </motion.div>
+
+                    {/* Trusted */}
+                    <motion.div
+                        className="trusted-by"
+                        variants={itemVariants}
                     >
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="play-icon"><path d="M8 5v14l11-7z" /></svg>
-                        Ver Video Demo
-                    </motion.button>
+                        <p>Confían en nosotros:</p>
+                        <div className="logos-row">
+                            <span className="logo-text">
+                                Clínica San José
+                            </span>
+                            <span className="logo-text">
+                                NeuroKids
+                            </span>
+                            <span className="logo-text">
+                                Asociación Pediátrica
+                            </span>
+                        </div>
+                    </motion.div>
                 </motion.div>
 
-                <motion.div className="trusted-by" variants={itemVariants}>
-                    <p>Confían en nosotros:</p>
-                    <div className="logos-row">
-                        <span className="logo-text">🏥 ClinicaSanJosé</span>
-                        <span className="logo-text">🧠 NeuroKids</span>
-                        <span className="logo-text">👨‍⚕️ PediatrasAsoc</span>
-                    </div>
-                </motion.div>
-            </motion.div>
-
-            <motion.div
-                className="hero-image"
-                style={{ rotateX, rotateY }}
-                initial={{ opacity: 0, scale: 0.9, rotateY: -10 }}
-                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                transition={{ duration: 1.2, delay: 0.4, type: "spring" }}
-            >
-                <div className="image-wrapper">
+                {/* Dashboard Mockup — dynamic, integrated */}
+                <motion.div
+                    className="hero-image"
+                    style={{ rotateX, rotateY }}
+                    initial={{
+                        opacity: 0,
+                        scale: 0.95,
+                        y: 30
+                    }}
+                    animate={{
+                        opacity: 1,
+                        scale: 1,
+                        y: 0
+                    }}
+                    transition={{
+                        duration: 1,
+                        delay: 0.5,
+                        ease: [0.25, 0.46, 0.45, 0.94]
+                    }}
+                >
                     <div className="image-glow"></div>
-                    <img
-                        src="https://res.cloudinary.com/dilgq19i2/image/upload/v1769148382/fondohero_bcjvxp.png"
-                        alt="Plataforma AutiSense detección temprana del TEA"
-                    />
-                </div>
-
-                {/* Floating Cards with Glassmorphism */}
-                <motion.div
-                    className="floating-card card-top"
-                    animate={{ y: [0, -15, 0], x: [0, 5, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                >
-                    <div className="card-icon check">✅</div>
-                    <div className="card-content">
-                        <span className="card-title">Análisis Listo</span>
-                        <span className="card-subtitle">Reporte generado</span>
-                    </div>
+                    <HeroDashboard />
                 </motion.div>
-
-                <motion.div
-                    className="floating-card card-bottom"
-                    animate={{ y: [0, 20, 0], x: [0, -8, 0] }}
-                    transition={{ duration: 5, repeat: Infinity, delay: 1, ease: "easeInOut" }}
-                >
-                    <div className="card-icon chart">📊</div>
-                    <div className="card-content">
-                        <span className="card-title">Precisión Alta</span>
-                        <span className="card-subtitle">95% de efectividad</span>
-                    </div>
-                </motion.div>
-            </motion.div>
+            </div>
 
             {/* Video Modal */}
             <AnimatePresence>
@@ -172,12 +195,31 @@ export default function Hero() {
                     >
                         <motion.div
                             className="video-modal-content"
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.8, opacity: 0 }}
-                            onClick={(e) => e.stopPropagation()}
+                            initial={{
+                                scale: 0.8,
+                                opacity: 0
+                            }}
+                            animate={{
+                                scale: 1,
+                                opacity: 1
+                            }}
+                            exit={{
+                                scale: 0.8,
+                                opacity: 0
+                            }}
+                            onClick={(e) =>
+                                e.stopPropagation()
+                            }
                         >
-                            <button className="close-modal" onClick={() => setIsVideoOpen(false)}>×</button>
+                            <button
+                                className="close-modal"
+                                onClick={() =>
+                                    setIsVideoOpen(false)
+                                }
+                            >
+                                <X size={22} />
+                            </button>
+
                             <div className="video-wrapper">
                                 <iframe
                                     width="100%"

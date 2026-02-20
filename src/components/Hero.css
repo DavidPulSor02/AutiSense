@@ -1,18 +1,16 @@
+/* ========================================
+   HERO — FULL-WIDTH LAYOUT
+   ======================================== */
+
 .hero {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 100vh;
-    padding: clamp(100px, 10vw, 140px) 24px 80px;
-    max-width: 1280px;
-    margin: 0 auto;
-    gap: clamp(3rem, 6vw, 5rem);
     position: relative;
+    width: 100%;
+    min-height: 100dvh;
     overflow: hidden;
     isolation: isolate;
 }
 
-/* Fondo Dinámico con Mesh Gradient */
+/* Mesh gradient background */
 .hero::before {
     content: "";
     position: absolute;
@@ -27,21 +25,41 @@
 
 .hero-bg-glow {
     position: absolute;
-    top: -50%;
+    top: -30%;
     left: 50%;
     transform: translate(-50%, 0);
-    width: 60vw;
+    width: 70vw;
     height: 60vh;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
     filter: blur(80px);
     z-index: -1;
     pointer-events: none;
 }
 
-/* LEFT CONTENT */
+/* ========================================
+   INNER CONTAINER — FLEX LAYOUT
+   ======================================== */
+
+.hero-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1600px;
+    min-height: 100dvh;
+    margin: 0 auto;
+    padding: clamp(100px, 12vw, 140px) clamp(24px, 5vw, 80px) clamp(40px, 6vw, 80px);
+    gap: clamp(2rem, 5vw, 6rem);
+}
+
+/* ========================================
+   LEFT — TEXT CONTENT
+   ======================================== */
+
 .hero-content {
-    flex: 1;
-    max-width: 620px;
+    flex: 1 1 50%;
+    max-width: 680px;
+    min-width: 0;
     z-index: 1;
 }
 
@@ -54,7 +72,7 @@
     border: 1px solid rgba(59, 130, 246, 0.2);
     padding: 6px 12px;
     border-radius: 99px;
-    margin-bottom: 24px;
+    margin-bottom: clamp(16px, 3vw, 24px);
     font-size: 0.875rem;
     color: #3b82f6;
     font-weight: 500;
@@ -67,14 +85,16 @@
     border-radius: 99px;
     font-size: 0.75rem;
     font-weight: 700;
+    display: inline-flex;
+    align-items: center;
 }
 
 .hero-content h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    line-height: 1.1;
+    font-size: clamp(2.2rem, 4.5vw, 4.2rem);
+    line-height: 1.08;
     font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
     color: var(--text-primary);
 }
 
@@ -86,18 +106,21 @@
 }
 
 .hero-content p {
-    font-size: clamp(1.1rem, 2vw, 1.25rem);
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
     color: var(--text-secondary);
-    margin-bottom: 2.5rem;
-    line-height: 1.7;
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+    line-height: 1.75;
     max-width: 540px;
 }
 
-/* BUTTONS */
+/* ========================================
+   BUTTONS
+   ======================================== */
+
 .hero-actions {
     display: flex;
-    gap: 1.2rem;
-    margin-bottom: 3.5rem;
+    gap: 1rem;
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
     flex-wrap: wrap;
 }
 
@@ -106,12 +129,13 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 0.9rem 1.8rem;
+    padding: clamp(0.7rem, 1.2vw, 0.9rem) clamp(1.2rem, 2vw, 1.8rem);
     border-radius: 12px;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: clamp(0.875rem, 1.1vw, 1rem);
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
 }
 
 .btn-primary {
@@ -141,11 +165,27 @@
     color: var(--brand-primary);
 }
 
+/* Dark mode — botón secundario visible */
+[data-theme='dark'] .btn-secondary {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: var(--text-primary);
+}
+
+[data-theme='dark'] .btn-secondary:hover {
+    background: rgba(56, 189, 248, 0.1);
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
+}
+
 .play-icon {
     color: #3b82f6;
 }
 
-/* TRUSTED */
+/* ========================================
+   TRUSTED BY
+   ======================================== */
+
 .trusted-by p {
     font-size: 0.875rem;
     color: #94a3b8;
@@ -155,10 +195,11 @@
 
 .logos-row {
     display: flex;
-    gap: 2rem;
+    gap: clamp(1rem, 2vw, 2rem);
     opacity: 0.7;
     filter: grayscale(100%);
     transition: all 0.3s ease;
+    flex-wrap: wrap;
 }
 
 .logos-row:hover {
@@ -168,107 +209,47 @@
 
 .logo-text {
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 1.1vw, 1.1rem);
     color: #64748b;
 }
 
-/* RIGHT IMAGE */
+/* ========================================
+   RIGHT — IMAGE (INTEGRATED, NO MARGIN)
+   ======================================== */
+
 .hero-image {
-    flex: 1;
+    flex: 1 1 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    perspective: 1000px;
-}
-
-.image-wrapper {
-    position: relative;
-    max-width: 580px;
-    width: 100%;
+    perspective: 800px;
+    min-width: 0;
+    max-width: 700px;
 }
 
 .image-glow {
     position: absolute;
-    inset: 40px;
-    background: linear-gradient(135deg, #3b82f6, #6366f1);
-    filter: blur(60px);
-    opacity: 0.4;
+    inset: 10%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 65%);
+    filter: blur(50px);
     z-index: -1;
     border-radius: 50%;
+    pointer-events: none;
 }
 
-.hero-image img {
+.hero-image>.dash-mockup {
     width: 100%;
-    height: auto;
-    border-radius: 24px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-    border: 8px solid rgba(255, 255, 255, 0.8);
 }
 
-/* FLOATING CARDS */
-.floating-card {
-    position: absolute;
-    padding: 1rem 1.25rem;
-    border-radius: 16px;
-    background: var(--bg-glass);
-    backdrop-filter: blur(16px);
-    border: 1px solid var(--border-light);
-    box-shadow: var(--shadow-md);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    min-width: 200px;
-    z-index: 2;
+.hero-image:hover>.image-glow {
+    opacity: 1.2;
 }
 
-.card-top {
-    top: 10%;
-    left: -10%;
-}
+/* ========================================
+   VIDEO MODAL
+   ======================================== */
 
-.card-bottom {
-    bottom: 12%;
-    right: -5%;
-}
-
-.card-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-}
-
-.check {
-    background: #dcfce7;
-    color: #16a34a;
-}
-
-.chart {
-    background: #dbeafe;
-    color: #2563eb;
-}
-
-.card-content {
-    display: flex;
-    flex-direction: column;
-}
-
-.card-title {
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: var(--text-primary);
-}
-
-.card-subtitle {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-}
-
-/* VIDEO MODAL */
 .video-modal-overlay {
     position: fixed;
     inset: 0;
@@ -314,21 +295,65 @@
     height: 100%;
 }
 
-/* RESPONSIVE */
-@media (max-width: 1024px) {
-    .hero {
-        flex-direction: column;
-        text-align: center;
-        padding-top: 120px;
-        min-height: auto;
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+/* Large screens */
+@media (min-width: 1600px) {
+    .hero-inner {
+        max-width: 1800px;
+    }
+
+    .hero-content h1 {
+        font-size: 4.5rem;
+    }
+
+    .hero-image {
+        max-width: 800px;
+    }
+}
+
+/* Ultra-wide */
+@media (min-width: 2000px) {
+    .hero-inner {
+        max-width: 2100px;
+        padding-left: 120px;
+        padding-right: 120px;
     }
 
     .hero-content {
-        max-width: 100%;
+        max-width: 780px;
+    }
+
+    .hero-image {
+        max-width: 900px;
+    }
+}
+
+/* Tablets & small desktops */
+@media (max-width: 1024px) {
+    .hero-inner {
+        flex-direction: column;
+        text-align: center;
+        min-height: auto;
+        padding-top: clamp(90px, 14vw, 120px);
+        padding-bottom: 60px;
+        gap: clamp(2rem, 5vw, 3rem);
+    }
+
+    .hero-content {
+        max-width: 680px;
+        flex: none;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(2rem, 5.5vw, 3rem);
     }
 
     .hero-content p {
-        margin: 0 auto 2.5rem;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .hero-actions {
@@ -339,31 +364,101 @@
         justify-content: center;
     }
 
-    .card-top {
-        left: 0;
-    }
-
-    .card-bottom {
-        right: 0;
+    .hero-image {
+        flex: none;
+        width: 100%;
+        max-width: 520px;
     }
 }
 
+/* Tablets portrait */
+@media (max-width: 768px) {
+    .hero-inner {
+        padding-top: clamp(80px, 15vw, 110px);
+        padding-bottom: 50px;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
+    }
+
+    .hero-image {
+        max-width: 440px;
+    }
+
+    .trusted-by p {
+        font-size: 0.8rem;
+    }
+
+    .logo-text {
+        font-size: 0.85rem;
+    }
+}
+
+/* Mobile */
 @media (max-width: 640px) {
+    .hero-inner {
+        padding-top: 80px;
+        padding-bottom: 40px;
+        gap: 2rem;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(1.5rem, 7vw, 2.2rem);
+    }
+
+    .hero-content h1 br {
+        display: none;
+    }
+
     .hero-actions {
         flex-direction: column;
+        gap: 0.75rem;
     }
 
     .btn-primary,
     .btn-secondary {
         width: 100%;
         justify-content: center;
+        padding: 0.85rem 1.5rem;
     }
 
-    .floating-card {
-        display: none;
+    .hero-image {
+        max-width: 100%;
     }
 
-    .hero-image img {
-        border-width: 4px;
+    .badge-container {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+
+    .logos-row {
+        gap: 1rem;
+    }
+
+    .logo-text {
+        font-size: 0.8rem;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 400px) {
+    .hero-inner {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
     }
 }
