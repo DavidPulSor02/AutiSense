@@ -2,8 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import "./AuthModal.css";
 
-const API_URL = import.meta.env.VITE_API_URL; // Si usas Vite
-// const API_URL = process.env.REACT_APP_API_URL; // Si usas CRA
+const API_URL = import.meta.env.VITE_API_URL || "";
 
 const AuthModal = ({ isOpen, onClose, onAuthSuccess }) => {
     const [tab, setTab] = useState("login");
