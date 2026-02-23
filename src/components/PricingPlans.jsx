@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import "./PricingPlans.css";
 import PaymentModal from "./PaymentModal";
+import DecryptPrice from "./DecryptPrice";
 
 const cardAnim = {
     hidden: { opacity: 0, y: 30 },
@@ -141,7 +142,7 @@ const PricingPlans = ({ user, onAuthRequired }) => {
                             <h3>{plan.name}</h3>
 
                             <div className="price">
-                                ${currentPrice}
+                                $<DecryptPrice target={currentPrice} />
                                 <span>{periodLabel}</span>
                             </div>
 

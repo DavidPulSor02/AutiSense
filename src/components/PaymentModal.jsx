@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import "./PaymentModal.css";
 
+
 const PaymentModal = ({ isOpen, onClose, plan, price, period }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
@@ -9,16 +10,11 @@ const PaymentModal = ({ isOpen, onClose, plan, price, period }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsSubmitting(true);
-
-        // Simulación de proceso de pago
         setTimeout(() => {
             setIsSubmitting(false);
             setIsSuccess(true);
-
-            // Cerrar automáticamente después de mostrar éxito
             setTimeout(() => {
                 onClose();
-                // Reset states after animation
                 setTimeout(() => setIsSuccess(false), 500);
             }, 3000);
         }, 2000);

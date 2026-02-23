@@ -58,7 +58,7 @@
 
 .hero-content {
     flex: 1 1 50%;
-    max-width: 680px;
+    max-width: 580px;
     min-width: 0;
     z-index: 1;
 }
@@ -220,12 +220,13 @@
 .hero-image {
     flex: 1 1 50%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     position: relative;
     perspective: 800px;
     min-width: 0;
     max-width: 700px;
+    margin-left: -40px;
 }
 
 .image-glow {

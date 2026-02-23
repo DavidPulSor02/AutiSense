@@ -1,0 +1,25 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <!-- Un fondo hexagonal sutil en azul claro -->
+    <path
+        d="M50 5 L85 25 V75 L50 95 L15 75 V25 Z"
+        stroke="#3b82f6"
+        stroke-width="4"
+        fill="none"
+        opacity="0.2"
+    />
+    
+    <!-- El pulso central en un azul vibrante y más grueso para que se vea en el favicon -->
+    <path
+        d="M25 50 C 35 50, 40 20, 50 50 C 60 80, 65 50, 75 50"
+        stroke="#2563eb"
+        stroke-width="12"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"
+    />
+    
+    <!-- Nodos con colores sólidos y vibrantes -->
+    <circle cx="50" cy="50" r="7" fill="#06b6d4" />
+    <circle cx="25" cy="50" r="6" fill="#2563eb" />
+    <circle cx="75" cy="50" r="6" fill="#06b6d4" />
+</svg>

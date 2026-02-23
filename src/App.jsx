@@ -33,13 +33,9 @@ const HomePage = ({ user, setUser, isAuthOpen, setIsAuthOpen }) => (
       <AppShowcase />
     </ScrollReveal>
 
-    <ScrollReveal variant="fadeIn" delay={0.3}>
-      <AboutAutisense />
-    </ScrollReveal>
+    <AboutAutisense />
 
-    <ScrollReveal variant="slideLeft" delay={0.2}>
-      <EarlySigns />
-    </ScrollReveal>
+    <EarlySigns />
 
     <ScrollReveal variant="scale" delay={0.2}>
       <SecurityPrivacy />

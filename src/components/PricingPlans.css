@@ -99,16 +99,35 @@
 }
 
 .price {
-    font-size: 36px;
-    font-weight: 700;
+    font-size: 52px;
+    font-weight: 800;
     margin-bottom: 24px;
     color: var(--brand-primary);
+    font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    letter-spacing: -2px;
+}
+
+.decrypt-text {
+    display: inline-block;
+    min-width: 120px;
+    transition: all 0.3s ease;
+}
+
+.decrypt-text.is-decrypting {
+    color: var(--brand-hover);
+    text-shadow: 0 0 12px var(--brand-hover);
+    filter: brightness(1.2);
 }
 
 .price span {
-    font-size: 15px;
+    font-size: 45px;
     font-weight: 500;
     color: var(--text-muted);
+    font-family: Arial, sans-serif;
+    letter-spacing: normal;
 }
 
 .pricing-card ul {

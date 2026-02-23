@@ -1,83 +1,73 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import "./EarlySigns.css";
 
-const cardAnim = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.6, ease: "easeOut" }
-    }
-};
-
 const EarlySigns = () => {
+    const containerRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "end start"]
+    });
+
+    // Transforms for a subtler, cleaner 3D Reveal
+    const rotateX = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [30, 0, 0, -30]);
+    const scale = useTransform(scrollYProgress, [0, 0.4, 0.8, 1], [0.95, 1, 1, 0.95]);
+    const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+
+    const SIGNS = [
+        {
+            title: "Contacto visual",
+            text: "Dificultades para mantener la mirada o seguir objetos pueden ser señales tempranas.",
+            icon: "https://res.cloudinary.com/dilgq19i2/image/upload/v1766022366/customer_eblkjz.png",
+        },
+        {
+            title: "Movimientos repetitivos",
+            text: "Conductas motoras repetitivas pueden indicar patrones tempranos a evaluar.",
+            icon: "https://res.cloudinary.com/dilgq19i2/image/upload/v1766022354/10315357-removebg-preview_hlckpw.png",
+        },
+        {
+            title: "Escasa atención",
+            text: "Dificultad para mantener la atención en estímulos sociales o visuales.",
+            icon: "https://res.cloudinary.com/dilgq19i2/image/upload/v1766022379/vision_vxaqti.png",
+        }
+    ];
+
     return (
-        <section className="earlysings" id="earlysings">
-            <motion.h2
-                className="signals-title"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+        <section className="early-signs-clean" id="earlysings" ref={containerRef}>
+            <motion.div
+                className="signs-header-clean"
+                style={{ opacity, scale }}
             >
-                Señales tempranas que <span>analizamos</span>
-            </motion.h2>
+                <h2 className="signs-title-clean">
+                    Señales tempranas que <span>analizamos</span>
+                </h2>
+                <div className="title-divider-clean"></div>
+            </motion.div>
 
-            <div className="signals-grid">
-
-                {/* CARD 1 */}
-                <motion.div
-                    className="signals-card"
-                    variants={cardAnim}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                >
-                    <div className="signals-icon">
-                        <img src="https://res.cloudinary.com/dilgq19i2/image/upload/v1766022366/customer_eblkjz.png" />
-                    </div>
-                    <h3>Contacto visual</h3>
-                    <p>
-                        Dificultades para mantener la mirada o seguir objetos
-                        pueden ser señales tempranas.
-                    </p>
-                </motion.div>
-
-                {/* CARD 2 */}
-                <motion.div
-                    className="signals-card"
-                    variants={cardAnim}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                >
-                    <div className="signals-icon">
-                        <img src="https://res.cloudinary.com/dilgq19i2/image/upload/v1766022354/10315357-removebg-preview_hlckpw.png" />
-                    </div>
-                    <h3>Movimientos repetitivos</h3>
-                    <p>
-                        Conductas motoras repetitivas pueden indicar
-                        patrones tempranos a evaluar.
-                    </p>
-                </motion.div>
-
-                {/* CARD 3 */}
-                <motion.div
-                    className="signals-card"
-                    variants={cardAnim}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                >
-                    <div className="signals-icon">
-                        <img src="https://res.cloudinary.com/dilgq19i2/image/upload/v1766022379/vision_vxaqti.png" />
-                    </div>
-                    <h3>Escasa atención</h3>
-                    <p>
-                        Dificultad para mantener la atención en estímulos
-                        sociales o visuales.
-                    </p>
-                </motion.div>
-
+            <div className="signs-grid-container-clean">
+                <div className="signs-grid-clean">
+                    {SIGNS.map((sign, index) => (
+                        <motion.div
+                            key={index}
+                            className="sign-card-clean"
+                            style={{
+                                rotateX,
+                                scale,
+                                opacity,
+                            }}
+                            whileHover={{
+                                y: -10,
+                                transition: { duration: 0.3 }
+                            }}
+                        >
+                            <div className="sign-icon-box-clean">
+                                <img src={sign.icon} alt={sign.title} />
+                            </div>
+                            <h3>{sign.title}</h3>
+                            <p>{sign.text}</p>
+                        </motion.div>
+                    ))}
+                </div>
             </div>
         </section>
     );

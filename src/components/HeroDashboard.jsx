@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./HeroDashboard.css";
 
@@ -14,16 +14,27 @@ const slides = [
     { component: <AnalisisView />, label: "Análisis" }
 ];
 
+const AUTO_PLAY_INTERVAL = 5000; // 5 seconds
+
 export default function HeroDashboard() {
     const [index, setIndex] = useState(0);
 
-    const next = () => {
+    const next = useCallback(() => {
         setIndex((prev) => (prev + 1) % slides.length);
-    };
+    }, []);
 
-    const prev = () => {
+    const prev = useCallback(() => {
         setIndex((prev) => (prev - 1 + slides.length) % slides.length);
-    };
+    }, []);
+
+    // Auto-play: advance slide every 5 seconds
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setIndex((prev) => (prev + 1) % slides.length);
+        }, AUTO_PLAY_INTERVAL);
+
+        return () => clearInterval(timer);
+    }, [index]); // reset timer when index changes (manual or auto)
 
     return (
         <div className="dash-carousel">

@@ -3,112 +3,189 @@ import "./ChatBot.css";
 import ChatToggleIcon from "./ChatToggleIcon.jsx";
 
 const FAQ_DATA = [
-    // ... (rest of the component remains same, just replacing the button content)
     {
         question: "¿Qué es AutiSense?",
-        answer: "AutiSense es una plataforma impulsada por IA diseñada para la detección temprana y seguimiento del desarrollo infantil, enfocada en el espectro autista."
+        answer:
+            "AutiSense es una plataforma impulsada por IA diseñada para la detección temprana y seguimiento del desarrollo infantil."
     },
     {
         question: "Señales de alerta",
-        answer: "Algunas señales tempranas incluyen: poco contacto visual, no responder a su nombre, retraso en el habla o movimientos repetitivos. ¡Nuestras herramientas pueden ayudarte a evaluarlas!"
+        answer:
+            "Algunas señales incluyen poco contacto visual, no responder a su nombre o retraso en el habla."
     },
     {
         question: "Planes y precios",
-        answer: "Contamos con un plan Lite (Gratis), Pro ($29/mes para familias) y Essential ($89 para profesionales). Puedes ver todos los detalles en la sección de Precios."
+        answer:
+            "Contamos con plan Lite (Gratis), Pro ($29/mes) y Essential ($89 para profesionales)."
     },
     {
         question: "Privacidad",
-        answer: "Tu privacidad es lo primero. Usamos encriptación de nivel bancario y cumplimos con normativas de protección de datos de salud."
+        answer:
+            "Tu información está protegida con encriptación de nivel bancario."
     }
 ];
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 export default function Chatbot() {
     const [open, setOpen] = useState(false);
-    const [messages, setMessages] = useState([
-        {
-            from: "bot",
-            text: "Hola 👋 Soy el asistente de AutiSense. Puedo ayudarte a conocer cómo funciona la plataforma, las señales tempranas y nuestros planes. ¿En qué puedo ayudarte hoy?"
-        }
-    ]);
+    const [messages, setMessages] = useState([]);
     const [input, setInput] = useState("");
     const [loading, setLoading] = useState(false);
+    const [isAuth, setIsAuth] = useState(!!localStorage.getItem("token"));
 
     const messagesEndRef = useRef(null);
+
+    // Fetch history when opening the chat
+    useEffect(() => {
+        if (open && isAuth) {
+            fetchChatHistory();
+        } else if (open && !isAuth) {
+            setMessages([
+                {
+                    from: "bot",
+                    text: "Hola 👋 Soy el asistente de AutiSense. Por favor, inicia sesión para que pueda guardar tu progreso y ayudarte mejor."
+                }
+            ]);
+        }
+    }, [open, isAuth]);
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages, loading]);
 
-    const simulateBotResponse = (text) => {
+    // Check for auth status periodically or on interaction
+    useEffect(() => {
+        const checkAuth = () => {
+            setIsAuth(!!localStorage.getItem("token"));
+        };
+        window.addEventListener("storage", checkAuth);
+        // También checar al enfocar la ventana por si hubo cambios en otras pestañas
+        window.addEventListener("focus", checkAuth);
+        return () => {
+            window.removeEventListener("storage", checkAuth);
+            window.removeEventListener("focus", checkAuth);
+        };
+    }, []);
+
+    const fetchChatHistory = async () => {
         setLoading(true);
-        setTimeout(() => {
-            setMessages(prev => [
-                ...prev,
-                { from: "bot", text }
-            ]);
+        try {
+            const token = localStorage.getItem("token");
+            const response = await fetch(`${API_URL}/api/chat`, {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+            const data = await response.json();
+            if (data.success && data.messages) {
+                const formattedMessages = data.messages.map(msg => ({
+                    from: msg.role === "bot" ? "bot" : "user",
+                    text: msg.content
+                }));
+                setMessages(formattedMessages);
+            }
+        } catch (error) {
+            console.error("Error fetching chat history:", error);
+        } finally {
             setLoading(false);
-        }, 600);
+        }
     };
 
-    async function sendMessage(text) {
-        setMessages(prev => [...prev, { from: "user", text }]);
-
-        // Check if it's an FAQ
-        const faq = FAQ_DATA.find(f => f.question.toLowerCase() === text.toLowerCase());
-        if (faq) {
-            simulateBotResponse(faq.answer);
+    const sendMessageToAPI = async (text) => {
+        if (!isAuth) {
+            setMessages((prev) => [...prev, { from: "user", text }]);
+            setTimeout(() => {
+                setMessages((prev) => [...prev, { from: "bot", text: "Recuerda iniciar sesión para recibir ayuda personalizada de nuestros especialistas." }]);
+            }, 600);
             return;
         }
 
+        setMessages((prev) => [...prev, { from: "user", text }]);
         setLoading(true);
+
         try {
-            const response = await fetch(
-                "https://davadev.app.n8n.cloud/webhook-test/autisense-chat",
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ message: text }),
-                }
-            );
+            const token = localStorage.getItem("token");
+            const response = await fetch(`${API_URL}/api/chat`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({ text })
+            });
 
             const data = await response.json();
-            setMessages(prev => [
-                ...prev,
-                { from: "bot", text: data.reply || "Ocurrió un error 😥" }
-            ]);
+            if (data.success && data.botMessage) {
+                setMessages((prev) => [...prev, {
+                    from: data.botMessage.role === "bot" ? "bot" : "user",
+                    text: data.botMessage.content
+                }]);
+            }
         } catch (error) {
-            setMessages(prev => [
-                ...prev,
-                { from: "bot", text: "Hubo un problema de conexión. Pero puedo responderte dudas generales si usas las opciones rápidas." }
-            ]);
+            console.error("Error sending message:", error);
+            setMessages((prev) => [...prev, {
+                from: "bot",
+                text: "Lo siento, tuve un problema al procesar tu mensaje. Inténtalo de nuevo más tarde."
+            }]);
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
-    }
-
-    const handleFAQClick = (faq) => {
-        sendMessage(faq.question);
     };
 
-    const handleSubmit = e => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         if (!input.trim() || loading) return;
-        sendMessage(input);
+        sendMessageToAPI(input);
         setInput("");
+    };
+
+    const clearChat = async () => {
+        if (!isAuth) return;
+        if (!window.confirm("¿Estás seguro de que deseas borrar el historial?")) return;
+        try {
+            const token = localStorage.getItem("token");
+            const response = await fetch(`${API_URL}/api/chat`, {
+                method: "DELETE",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+            const data = await response.json();
+            if (data.success) {
+                setMessages([{
+                    from: data.initialMessage.role === "bot" ? "bot" : "user",
+                    text: data.initialMessage.content
+                }]);
+            }
+        } catch (error) {
+            console.error("Error clearing chat:", error);
+        }
     };
 
     return (
         <>
-            {/* BOTÓN FLOTANTE */}
-            <button className="chat-toggle" onClick={() => setOpen(!open)} aria-label="Abrir chat">
+            <button
+                className="chat-toggle"
+                onClick={() => setOpen(!open)}
+                aria-label="Abrir chat"
+            >
                 <ChatToggleIcon isOpen={open} />
             </button>
 
-            {/* CHAT */}
             {open && (
                 <div className="chatbot">
                     <div className="chat-header">
-                        <span>Asistente AutiSense</span>
-                        <button onClick={() => setOpen(false)}>✕</button>
+                        <div>
+                            <h4>Asistente AutiSense</h4>
+                            <span>En línea</span>
+                        </div>
+                        <div className="header-actions">
+                            {isAuth && messages.length > 1 && (
+                                <button className="clear-chat" onClick={clearChat} title="Borrar historial">🗑️</button>
+                            )}
+                            <button onClick={() => setOpen(false)}>✕</button>
+                        </div>
                     </div>
 
                     <div className="chat-messages">
@@ -118,13 +195,12 @@ export default function Chatbot() {
                             </div>
                         ))}
 
-                        {!loading && messages.length === 1 && (
+                        {!loading && messages.length <= 1 && (
                             <div className="faq-chips">
                                 {FAQ_DATA.map((faq, i) => (
                                     <button
                                         key={i}
-                                        className="faq-chip"
-                                        onClick={() => handleFAQClick(faq)}
+                                        onClick={() => sendMessageToAPI(faq.question)}
                                     >
                                         {faq.question}
                                     </button>
@@ -132,18 +208,23 @@ export default function Chatbot() {
                             </div>
                         )}
 
-                        {loading && <div className="msg bot typing">Escribiendo<span>.</span><span>.</span><span>.</span></div>}
+                        {loading && (
+                            <div className="msg bot typing">
+                                Escribiendo...
+                            </div>
+                        )}
+
                         <div ref={messagesEndRef} />
                     </div>
 
                     <form onSubmit={handleSubmit} className="chat-input">
                         <input
                             value={input}
-                            onChange={e => setInput(e.target.value)}
-                            placeholder="Escribe tu mensaje…"
+                            onChange={(e) => setInput(e.target.value)}
+                            placeholder="Escribe tu mensaje..."
                             disabled={loading}
                         />
-                        <button type="submit" disabled={loading || !input.trim()}>
+                        <button type="submit" disabled={!input.trim()}>
                             ➤
                         </button>
                     </form>

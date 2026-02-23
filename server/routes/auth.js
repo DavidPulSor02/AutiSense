@@ -15,6 +15,7 @@ router.post("/register", async (req, res) => {
             return res.status(400).json({ message: "El correo ya está registrado" });
         }
 
+
         const user = new User({ name, email, password });
         await user.save();
 

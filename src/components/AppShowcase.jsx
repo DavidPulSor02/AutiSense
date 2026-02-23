@@ -2,13 +2,26 @@ import React, { useState, useEffect } from 'react';
 import './AppShowcase.css';
 import { motion, AnimatePresence } from "framer-motion";
 import { LineChart, Line, ResponsiveContainer } from 'recharts';
-
-const Icons = {
-    Dashboard: () => <span className="text-2xl">📊</span>,
-    Resources: () => <span className="text-2xl">📚</span>,
-    Report: () => <span className="text-2xl">📝</span>,
-    Calendar: () => <span className="text-2xl">📅</span>,
-};
+import {
+    BarChart3,
+    BookOpen,
+    FileText,
+    CalendarDays,
+    Printer,
+    Puzzle,
+    FileBarChart,
+    Brain,
+    Stethoscope,
+    Hospital,
+    ChevronLeft,
+    MoreHorizontal,
+    Home,
+    Search,
+    ArrowRight,
+    Sparkles,
+    TrendingUp,
+    Shield
+} from 'lucide-react';
 
 // --- Screen Components ---
 
@@ -16,13 +29,13 @@ const StatusHeader = ({ title, showBack = true, showMenu = true }) => (
     <div className="phone-header">
         {showBack ? (
             <button className="icon-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
+                <ChevronLeft size={20} />
             </button>
         ) : <div className="w-5" />}
         <h3 className="header-title">{title}</h3>
         {showMenu ? (
             <button className="icon-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /><circle cx="5" cy="12" r="1" /></svg>
+                <MoreHorizontal size={20} />
             </button>
         ) : <div className="w-5" />}
     </div>
@@ -31,19 +44,19 @@ const StatusHeader = ({ title, showBack = true, showMenu = true }) => (
 const BottomNav = () => (
     <div className="phone-bottom-nav">
         <div className="nav-item active">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            <Home size={20} />
             <span>Dashboard</span>
         </div>
         <div className="nav-item">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <Search size={20} />
             <span>Recursos</span>
         </div>
         <div className="nav-item">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            <FileText size={20} />
             <span>Reportes</span>
         </div>
         <div className="nav-item">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <CalendarDays size={20} />
             <span>Citas</span>
         </div>
     </div>
@@ -68,7 +81,7 @@ const DashboardScreen = () => {
                 <div className="main-stats-card">
                     <div className="stats-header">
                         <span>Progreso General</span>
-                        <button className="icon-xs">🖨️</button>
+                        <button className="icon-xs"><Printer size={16} color="#93c5fd" /></button>
                     </div>
                     <div className="stats-value">75%</div>
                     <div className="chart-container">
@@ -99,20 +112,24 @@ const DashboardScreen = () => {
 
                 <div className="list-section">
                     <div className="list-item">
-                        <div className="item-icon bg-orange-100 text-orange-500">🧩</div>
+                        <div className="item-icon bg-orange-100 text-orange-500">
+                            <Puzzle size={20} />
+                        </div>
                         <div className="item-content">
                             <h4>Análisis de Desarrollo General</h4>
                             <p>20 Mar 2024 10:00 AM</p>
                         </div>
-                        <div className="item-action">📄</div>
+                        <div className="item-action"><FileBarChart size={18} color="#94a3b8" /></div>
                     </div>
                     <div className="list-item">
-                        <div className="item-icon bg-green-100 text-green-500">🧠</div>
+                        <div className="item-icon bg-green-100 text-green-500">
+                            <Brain size={20} />
+                        </div>
                         <div className="item-content">
                             <h4>Actividades Apoyo</h4>
                             <p>Patrones identificados</p>
                         </div>
-                        <div className="item-action">🧠</div>
+                        <div className="item-action"><Brain size={18} color="#94a3b8" /></div>
                     </div>
                 </div>
             </div>
@@ -132,13 +149,15 @@ const ResourcesScreen = () => (
 
         <div className="content-scroll">
             <div className="hero-card">
-                <div className="book-icon">📖</div>
+                <div className="book-icon"><BookOpen size={28} color="#8b5cf6" /></div>
                 <button className="hero-btn">Ver Reporte Completo</button>
             </div>
 
             <div className="resource-list">
                 <div className="resource-card">
-                    <div className="res-icon bg-green-50 text-green-600">📝</div>
+                    <div className="res-icon bg-green-50 text-green-600">
+                        <FileText size={22} />
+                    </div>
                     <div className="res-content">
                         <h4>Guías para Padres</h4>
                         <span className="date">20 Mar, 2024</span>
@@ -148,7 +167,9 @@ const ResourcesScreen = () => (
                 </div>
 
                 <div className="resource-card">
-                    <div className="res-icon bg-blue-50 text-blue-600">📊</div>
+                    <div className="res-icon bg-blue-50 text-blue-600">
+                        <BarChart3 size={22} />
+                    </div>
                     <div className="res-content">
                         <h4>Mitos y realidades sobre...</h4>
                         <span className="date">20 Mar, 2024 10:09 AM</span>
@@ -159,9 +180,10 @@ const ResourcesScreen = () => (
             </div>
 
             <div className="section-title">Próximas Citas</div>
-            {/* Mock next item to fill space */}
             <div className="resource-card compact">
-                <div className="res-icon bg-red-50 text-red-500">🏥</div>
+                <div className="res-icon bg-red-50 text-red-500">
+                    <Hospital size={20} />
+                </div>
                 <div className="res-content">
                     <h4>Evaluación de Dislexia</h4>
                     <span className="date">20 Mar, 2024 - 10:00 AM</span>
@@ -185,7 +207,7 @@ const CalendarScreen = () => {
                 <div className="calendar-widget">
                     <div className="cal-header">
                         <span>Marzo 2024</span>
-                        <button className="icon-xs">📅</button>
+                        <button className="icon-xs"><CalendarDays size={16} color="#3b82f6" /></button>
                     </div>
                     <div className="cal-grid">
                         <div className="cal-day-name">S</div>
@@ -215,7 +237,9 @@ const CalendarScreen = () => {
                         </div>
                         <div className="cal-events-col">
                             <div className="cal-event-card">
-                                <div className="cal-icon bg-green-100 text-green-600">🩺</div>
+                                <div className="cal-icon bg-green-100 text-green-600">
+                                    <Stethoscope size={18} />
+                                </div>
                                 <div className="cal-details">
                                     <h4>Dr. Ana Pérez (Pediatra)</h4>
                                     <span>20 Mar 2024 - 10:30 AM</span>
@@ -223,7 +247,9 @@ const CalendarScreen = () => {
                                 <button className="btn-blue-sm">Ver</button>
                             </div>
                             <div className="cal-event-card">
-                                <div className="cal-icon bg-orange-100 text-orange-600">🧩</div>
+                                <div className="cal-icon bg-orange-100 text-orange-600">
+                                    <Puzzle size={18} />
+                                </div>
                                 <div className="cal-details">
                                     <h4>Terapia Ocupacional</h4>
                                     <span>20 Mar 2024 - 09:50 AM</span>
@@ -245,21 +271,24 @@ const screens = [
         id: 'dashboard',
         title: 'Monitorización en Tiempo Real',
         description: 'Accede a un panel intuitivo con el progreso de las evaluaciones y análisis IA.',
-        icon: Icons.Dashboard,
+        icon: BarChart3,
+        accent: '#3b82f6',
         Component: DashboardScreen
     },
     {
         id: 'resources',
         title: 'Biblioteca de Recursos',
         description: 'Guías, mitos y realidades sobre el autismo al alcance de tu mano.',
-        icon: Icons.Resources,
+        icon: BookOpen,
+        accent: '#8b5cf6',
         Component: ResourcesScreen
     },
     {
         id: 'calendar',
         title: 'Gestión de Citas',
         description: 'Organiza evaluaciones y consultas con especialistas fácilmente.',
-        icon: Icons.Calendar,
+        icon: CalendarDays,
+        accent: '#10b981',
         Component: CalendarScreen
     }
 ];
@@ -276,7 +305,7 @@ const AppShowcase = () => {
                 const index = screens.findIndex(s => s.id === prev.id);
                 return screens[(index + 1) % screens.length];
             });
-        }, 5000); // 5 seconds for better reading time
+        }, 5000);
 
         return () => clearInterval(interval);
     }, []);
@@ -294,31 +323,93 @@ const AppShowcase = () => {
         <section className="app-showcase-section" id="showcase">
             <div className="showcase-container">
 
-                {/* TEXT SIDE */}
+                {/* TEXT SIDE — Redesigned */}
                 <div className="showcase-content">
-                    <h2 className="showcase-title">
-                        Tu Compañero Integral en el Desarrollo
-                    </h2>
-                    <p className="showcase-description">
-                        AutiSense simplifica el seguimiento y la detección temprana con una interfaz amigable diseñada para padres y especialistas.
-                    </p>
+                    <motion.div
+                        className="showcase-badge"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        <Sparkles size={14} />
+                        <span>Explora la Plataforma</span>
+                    </motion.div>
 
-                    <div className="feature-tabs">
-                        {screens.map((screen) => (
-                            <div
-                                key={screen.id}
-                                className={`feature-tab ${activeScreen.id === screen.id ? 'active' : ''}`}
-                                onClick={() => setActiveScreen(screen)}
-                            >
-                                <div className="tab-icon">
-                                    <screen.icon />
-                                </div>
-                                <div className="tab-info">
-                                    <h3>{screen.title}</h3>
-                                    <p>{screen.description}</p>
-                                </div>
+                    <motion.h2
+                        className="showcase-title"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                    >
+                        Tu Compañero Integral <br />
+                        en el <span className="showcase-highlight">Desarrollo</span>
+                    </motion.h2>
+
+                    <motion.p
+                        className="showcase-description"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                    >
+                        AutiSense simplifica el seguimiento y la detección temprana con una interfaz amigable diseñada para padres y especialistas.
+                    </motion.p>
+
+                    {/* Stats row */}
+                    <motion.div
+                        className="showcase-stats"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.25 }}
+                    >
+                        <div className="stat-item">
+                            <TrendingUp size={18} className="stat-icon" />
+                            <div>
+                                <span className="stat-number">+85%</span>
+                                <span className="stat-label">Precisión IA</span>
                             </div>
-                        ))}
+                        </div>
+                        <div className="stat-divider" />
+                        <div className="stat-item">
+                            <Shield size={18} className="stat-icon" />
+                            <div>
+                                <span className="stat-number">100%</span>
+                                <span className="stat-label">Datos Seguros</span>
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Feature tabs */}
+                    <div className="feature-tabs">
+                        {screens.map((screen, i) => {
+                            const Icon = screen.icon;
+                            const isActive = activeScreen.id === screen.id;
+                            return (
+                                <motion.div
+                                    key={screen.id}
+                                    className={`feature-tab ${isActive ? 'active' : ''}`}
+                                    onClick={() => setActiveScreen(screen)}
+                                    initial={{ opacity: 0, x: -30 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.3 + i * 0.1 }}
+                                >
+                                    <div className="tab-icon" style={isActive ? { background: `${screen.accent}33` } : {}}>
+                                        <Icon size={22} color={isActive ? '#fff' : screen.accent} />
+                                    </div>
+                                    <div className="tab-info">
+                                        <h3>{screen.title}</h3>
+                                        <p>{screen.description}</p>
+                                    </div>
+                                    <ArrowRight
+                                        size={16}
+                                        className={`tab-arrow ${isActive ? 'visible' : ''}`}
+                                    />
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 </div>
 
@@ -351,7 +442,6 @@ const AppShowcase = () => {
                                     exit={{ opacity: 0, x: -50 }}
                                     transition={{ duration: 0.4 }}
                                 >
-                                    {/* Render dynamic component instead of image */}
                                     <ActiveComponent />
                                 </motion.div>
                             </AnimatePresence>
