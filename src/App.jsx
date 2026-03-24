@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css'
 import Navbar from './components/Navbar.jsx'
@@ -18,61 +18,107 @@ import ScrollProgress from './components/ScrollProgress.jsx';
 import NotFound from './components/NotFound.jsx';
 
 // Main Landing Page Component
-const HomePage = ({ user, setUser, isAuthOpen, setIsAuthOpen }) => (
-  <div className="animate-fade-in">
-    <ScrollProgress />
-    <Navbar
-      user={user}
-      setUser={setUser}
-      isAuthOpen={isAuthOpen}
-      setIsAuthOpen={setIsAuthOpen}
-    />
-    <Hero />
+const HomePage = () => {
+  const [activeSection, setActiveSection] = useState('');
+  
+  useEffect(() => {
+    const options = {
+      root: null,
+      threshold: 0.5, // Detect when 50% of the section is visible
+    };
 
-    <ScrollReveal variant="slideUp" delay={0.2}>
-      <AppShowcase />
-    </ScrollReveal>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, options);
 
-    <AboutAutisense />
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section) => observer.observe(section));
 
-    <EarlySigns />
+    return () => sections.forEach((section) => observer.unobserve(section));
+  }, []);
 
-    <ScrollReveal variant="scale" delay={0.2}>
-      <SecurityPrivacy />
-    </ScrollReveal>
-
-    <ScrollReveal variant="slideRight" delay={0.2}>
-      <WhyChooseUs />
-    </ScrollReveal>
-
-    <ScrollReveal variant="fadeIn" delay={0.2}>
-      <PricingPlans
-        user={user}
-        onAuthRequired={() => setIsAuthOpen(true)}
+  return (
+    <div className="landing-wrapper">
+      <ScrollProgress />
+      <Navbar
+        activeSection={activeSection}
       />
-    </ScrollReveal>
+      
+      <main>
+        <div className={`section-focus-wrap ${activeSection === 'hero' ? 'is-active' : ''}`}>
+          <Hero />
+        </div>
 
-    <ScrollReveal variant="slideUp" delay={0.2}>
-      <Testimonials />
-    </ScrollReveal>
+        <div className={`section-focus-wrap ${activeSection === 'showcase' ? 'is-active' : ''}`}>
+          <ScrollReveal variant="slideUp" delay={0.2}>
+            <AppShowcase />
+          </ScrollReveal>
+        </div>
 
-    <Footer />
-    <Chatbot />
-  </div>
-);
+        <div className={`section-focus-wrap ${activeSection === 'about' ? 'is-active' : ''}`}>
+          <ScrollReveal variant="fadeIn" delay={0.2}>
+            <AboutAutisense />
+          </ScrollReveal>
+        </div>
+
+        <div className={`section-focus-wrap ${activeSection === 'signals' ? 'is-active' : ''}`}>
+          <ScrollReveal variant="slideUp" delay={0.2}>
+            <EarlySigns />
+          </ScrollReveal>
+        </div>
+
+        <div className={`section-focus-wrap ${activeSection === 'security' ? 'is-active' : ''}`}>
+          <ScrollReveal variant="scale" delay={0.2}>
+            <SecurityPrivacy />
+          </ScrollReveal>
+        </div>
+
+        <div className={`section-focus-wrap ${activeSection === 'why' ? 'is-active' : ''}`}>
+          <ScrollReveal variant="slideRight" delay={0.2}>
+            <WhyChooseUs />
+          </ScrollReveal>
+        </div>
+
+        <div className={`section-focus-wrap ${activeSection === 'plans' ? 'is-active' : ''}`}>
+          <ScrollReveal variant="fadeIn" delay={0.2}>
+            <PricingPlans />
+          </ScrollReveal>
+        </div>
+
+        <div className={`section-focus-wrap ${activeSection === 'testimonials' ? 'is-active' : ''}`}>
+          <ScrollReveal variant="slideUp" delay={0.2}>
+            <Testimonials />
+          </ScrollReveal>
+        </div>
+
+        <Footer />
+      </main>
+      
+      <Chatbot />
+      
+      <style jsx>{`
+        .section-focus-wrap {
+          transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease;
+          opacity: 0.8;
+          transform: scale(0.99);
+        }
+        .section-focus-wrap.is-active {
+          opacity: 1;
+          transform: scale(1);
+        }
+      `}</style>
+    </div>
+  );
+};
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState(null);
-  const [isAuthOpen, setIsAuthOpen] = useState(false);
 
   useEffect(() => {
-    // Check for user session
-    const savedUser = localStorage.getItem("user");
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    }
-
     // Simulate loading process
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -88,12 +134,7 @@ function App() {
       {!isLoading && (
         <Routes>
           <Route path="/" element={
-            <HomePage
-              user={user}
-              setUser={setUser}
-              isAuthOpen={isAuthOpen}
-              setIsAuthOpen={setIsAuthOpen}
-            />
+            <HomePage />
           } />
 
           {/* Catch-all 404 Route */}

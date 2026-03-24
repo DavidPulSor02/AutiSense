@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import "./PricingPlans.css";
-import PaymentModal from "./PaymentModal";
 import DecryptPrice from "./DecryptPrice";
 
 const cardAnim = {
@@ -17,10 +16,8 @@ const cardAnim = {
     })
 };
 
-const PricingPlans = ({ user, onAuthRequired }) => {
+const PricingPlans = () => {
     const [billing, setBilling] = useState("monthly");
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedPlan, setSelectedPlan] = useState(null);
 
     const plans = {
         esencial: {
@@ -63,24 +60,14 @@ const PricingPlans = ({ user, onAuthRequired }) => {
         return Math.round(basePrice * 12 * 0.8); // -20% anual
     };
 
-    const handleCheckout = (planKey) => {
-        if (!user) {
-            onAuthRequired();
-            return;
-        }
-
-        const planData = plans[planKey];
-        setSelectedPlan({
-            name: planData.name,
-            price: getPriceValue(planData.price)
-        });
-        setIsModalOpen(true);
+    const handleCheckout = () => {
+        window.location.href = "http://18.191.246.13/planes";
     };
 
     const periodLabel = billing === "monthly" ? "/ mes" : "/ año";
 
     return (
-        <section className="pricingplans" id="pricingplans">
+        <section className="pricingplans" id="plans">
             <motion.h2
                 className="pricing-title"
                 initial={{ opacity: 0, y: 20 }}
@@ -165,14 +152,6 @@ const PricingPlans = ({ user, onAuthRequired }) => {
                 })}
             </div>
 
-            {/* MODAL DE PAGO SIMULADO */}
-            <PaymentModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                plan={selectedPlan?.name}
-                price={selectedPlan?.price}
-                period={periodLabel}
-            />
         </section>
     );
 };

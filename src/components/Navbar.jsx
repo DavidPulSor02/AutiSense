@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./Navbar.css";
 import ThemeToggle from "./ThemeToggle.jsx";
-import AuthModal from "./AuthModal.jsx";
 import AutiSenseLogo from "./AutiSenseLogo.jsx";
 
-export default function Navbar({ user, setUser, isAuthOpen, setIsAuthOpen }) {
+export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [active, setActive] = useState("");
 
@@ -18,11 +17,6 @@ export default function Navbar({ user, setUser, isAuthOpen, setIsAuthOpen }) {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const handleLogout = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        setUser(null);
-    };
 
     useEffect(() => {
         const sections = document.querySelectorAll("section");
@@ -47,9 +41,9 @@ export default function Navbar({ user, setUser, isAuthOpen, setIsAuthOpen }) {
 
     const navLinks = [
         { id: "hero", label: "Nosotros" },
-        { id: "earlysings", label: "Señales" },
+        { id: "signals", label: "Señales" },
         { id: "security", label: "Seguridad" },
-        { id: "pricingplans", label: "Planes" },
+        { id: "plans", label: "Planes" },
         { id: "testimonials", label: "Testimonios" }
     ];
 
@@ -107,34 +101,12 @@ export default function Navbar({ user, setUser, isAuthOpen, setIsAuthOpen }) {
 
                     {/* DERECHA */}
                     <motion.div className="navbar-right" variants={linkVariants}>
-                        {user ? (
-                            <div className="user-menu">
-                                <span className="user-name">Hola, {user.name.split(" ")[0]}</span>
-                                <button className="nav-btn-outline" onClick={handleLogout}>
-                                    Salir
-                                </button>
-                            </div>
-                        ) : (
-                            <motion.button
-                                className="nav-btn-primary"
-                                onClick={() => setIsAuthOpen(true)}
-                                whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(37, 99, 235, 0.4)" }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                Entrar
-                            </motion.button>
-                        )}
                         <ThemeToggle />
                     </motion.div>
 
                 </div>
             </motion.header>
 
-            <AuthModal
-                isOpen={isAuthOpen}
-                onClose={() => setIsAuthOpen(false)}
-                onAuthSuccess={(userData) => setUser(userData)}
-            />
         </>
     );
 }
