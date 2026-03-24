@@ -48,7 +48,7 @@ const AboutAutisense = () => {
     }, [isPaused, nextSlide]);
 
     return (
-        <section className="features-auto-section">
+        <section className="features-auto-section" id="about">
             <div className="carousel-background-glow"></div>
 
             <div className="carousel-header">

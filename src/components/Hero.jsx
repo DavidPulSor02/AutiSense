@@ -1,5 +1,5 @@
 import "./Hero.css";
-import HeroDashboard from "./HeroDashboard";
+import heroImage from "../assets/hero-image.png";
 import {
     motion,
     useMotionValue,
@@ -158,14 +158,14 @@ export default function Hero() {
                     </motion.div>
                 </motion.div>
 
-                {/* Dashboard Mockup — dynamic, integrated */}
+                {/* Image Mockup — static, premium */}
                 <motion.div
                     className="hero-image"
                     style={{ rotateX, rotateY }}
                     initial={{
                         opacity: 0,
-                        scale: 0.95,
-                        y: 30
+                        scale: 0.9,
+                        y: 40
                     }}
                     animate={{
                         opacity: 1,
@@ -173,13 +173,13 @@ export default function Hero() {
                         y: 0
                     }}
                     transition={{
-                        duration: 1,
-                        delay: 0.5,
-                        ease: [0.25, 0.46, 0.45, 0.94]
+                        duration: 1.2,
+                        delay: 0.4,
+                        ease: [0.25, 1, 0.5, 1]
                     }}
                 >
                     <div className="image-glow"></div>
-                    <HeroDashboard />
+                    <img src={heroImage} alt="AutiSense Premium Experience" className="premium-hero-img" />
                 </motion.div>
             </div>
 

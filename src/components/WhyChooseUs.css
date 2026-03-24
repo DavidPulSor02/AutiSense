@@ -3,7 +3,7 @@
 ============================== */
 
 .why-section {
-    padding: 140px 6vw;
+    padding: clamp(60px, 10vh, 140px) 5%; /* Replaced static padding */
     background: var(--bg-primary);
 }
 

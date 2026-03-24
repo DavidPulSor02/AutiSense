@@ -1,6 +1,6 @@
 .security-evervault-section {
     position: relative;
-    padding: 120px 0;
+    padding: clamp(60px, 10vh, 120px) 0;
     background: var(--bg-primary);
     /* Adapted to theme */
     min-height: 100vh;
@@ -35,7 +35,7 @@
 
 .security-header-compact {
     text-align: center;
-    margin-bottom: 100px;
+    margin-bottom: clamp(40px, 8vh, 100px);
     z-index: 20;
     padding: 0 5%;
 }
@@ -64,7 +64,7 @@
 .evervault-container {
     position: relative;
     width: 100%;
-    height: 500px;
+    min-height: 400px; /* Reduced specific height to let content define true height */
     display: flex;
     align-items: center;
 }
@@ -113,7 +113,7 @@
 .card-wrapper {
     position: relative;
     width: 440px;
-    height: 280px;
+    height: 340px; /* Increased from 280px to fit text better */
     flex-shrink: 0;
     perspective: 1200px;
 }
@@ -137,7 +137,7 @@
     clip-path: inset(0 0 0 var(--clip-right, 0%));
     display: flex;
     flex-direction: column;
-    padding: 40px;
+    padding: 30px; /* Reduced padding slightly */
     box-shadow: var(--shadow-sm);
     /* Adapted holographic pattern opacity */
     background-image:
@@ -193,10 +193,24 @@
 }
 
 .card-content-box p {
-    font-size: 1.05rem;
+    font-size: 0.95rem; /* Slightly smaller for better fit */
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.5;
     margin-bottom: auto;
+    overflow-y: auto; /* Handle any remaining overflow */
+    padding-right: 5px;
+}
+
+/* Custom minimal scrollbar for text if needed */
+.card-content-box p::-webkit-scrollbar {
+    width: 4px;
+}
+.card-content-box p::-webkit-scrollbar-track {
+    background: transparent;
+}
+.card-content-box p::-webkit-scrollbar-thumb {
+    background: var(--border-light);
+    border-radius: 4px;
 }
 
 .card-tag {
@@ -258,7 +272,7 @@
 @media (max-width: 768px) {
     .card-wrapper {
         width: 320px;
-        height: 220px;
+        height: 280px; /* Increased from 220px to fit text on mobile */
     }
 
     .card-line {
@@ -266,14 +280,16 @@
     }
 
     .card-normal {
-        padding: 30px;
+        padding: 24px; /* Reduced from 30px to maximize space */
     }
 
     .card-icon-box {
         font-size: 2.2rem;
+        margin-bottom: 15px; /* Adjust spacing */
     }
 
     .card-content-box h3 {
         font-size: 1.3rem;
+        margin-bottom: 8px; /* Adjust spacing */
     }
 }

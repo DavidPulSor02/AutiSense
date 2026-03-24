@@ -37,7 +37,7 @@ const WhyChooseUs = () => {
     const [activeId, setActiveId] = useState(1);
 
     return (
-        <section className="why-section">
+        <section className="why-section" id="why">
             <h2 className="why-title">
                 ¿Por qué <span>elegirnos</span>?
             </h2>

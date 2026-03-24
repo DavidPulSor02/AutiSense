@@ -33,7 +33,7 @@ const EarlySigns = () => {
     ];
 
     return (
-        <section className="early-signs-clean" id="earlysings" ref={containerRef}>
+        <section className="early-signs-clean" id="signals" ref={containerRef}>
             <motion.div
                 className="signs-header-clean"
                 style={{ opacity, scale }}
