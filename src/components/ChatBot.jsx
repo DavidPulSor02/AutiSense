@@ -91,6 +91,7 @@ export default function Chatbot() {
             setLoading(false);
         }
     };
+    
 
     const sendMessageToAPI = async (text) => {
         if (!isAuth) {

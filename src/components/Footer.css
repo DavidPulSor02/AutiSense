@@ -29,11 +29,13 @@
 .footer-brand .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 16px;
+    gap: 12px;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--logo-text);
+    margin-bottom: 20px;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    letter-spacing: -0.02em;
 }
 
 .footer-brand p {

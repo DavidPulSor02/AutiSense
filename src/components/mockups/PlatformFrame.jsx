@@ -11,6 +11,8 @@ import {
     HiOutlineQuestionMarkCircle
 } from "react-icons/hi";
 
+import AutiSenseLogo from "../AutiSenseLogo.jsx";
+
 const navItems = [
     { id: "dashboard", label: "Dashboard", icon: HiOutlineHome },
     { id: "pacientes", label: "Pacientes", icon: HiOutlineUsers },
@@ -25,14 +27,7 @@ export default function PlatformFrame({ activeItem, children }) {
             <aside className="pf-sidebar">
                 <div className="pf-logo-area">
                     <div className="pf-logo-circle">
-                        <svg viewBox="0 0 40 40" className="pf-logo-svg">
-                            <circle cx="20" cy="20" r="18" fill="none" stroke="#4dd0e1" strokeWidth="2" />
-                            <circle cx="20" cy="20" r="12" fill="none" stroke="#80cbc4" strokeWidth="1.5" />
-                            <circle cx="20" cy="14" r="3" fill="#e91e63" />
-                            <circle cx="14" cy="23" r="2.5" fill="#ff9800" />
-                            <circle cx="26" cy="23" r="2.5" fill="#4caf50" />
-                            <circle cx="20" cy="20" r="2" fill="#2196f3" />
-                        </svg>
+                        <AutiSenseLogo size={32} />
                     </div>
                     <span className="pf-logo-text">Autisense</span>
                 </div>
