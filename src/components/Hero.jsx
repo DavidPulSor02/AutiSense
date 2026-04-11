@@ -112,6 +112,7 @@ export default function Hero() {
                     >
                         <motion.button
                             className="btn-primary"
+                            onClick={() => window.location.href = "http://18.191.246.13/planes"}
                             whileHover={{
                                 scale: 1.05,
                                 boxShadow:
@@ -126,6 +127,7 @@ export default function Hero() {
                         <motion.button
                             className="btn-secondary"
                             onClick={() => setIsVideoOpen(true)}
+                            
                             whileHover={{
                                 scale: 1.05,
                                 background:
