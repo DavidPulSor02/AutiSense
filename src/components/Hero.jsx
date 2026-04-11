@@ -92,10 +92,10 @@ export default function Hero() {
 
                     {/* Title */}
                     <motion.h1 variants={itemVariants}>
-                        Descubre el Potencial <br />
+                        Plataforma Inteligente <br />
                         <span className="text-gradient">
-                            Sin Límites
-                        </span> de tu Hijo
+                            Deteccion
+                        </span> Temprana del TEA
                     </motion.h1>
 
                     {/* Description */}
