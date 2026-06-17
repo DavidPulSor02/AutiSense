@@ -3,19 +3,15 @@ import heroImage from "../assets/hero-image.png";
 import {
     motion,
     useMotionValue,
-    useTransform,
-    AnimatePresence
+    useTransform
 } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
     Rocket,
-    Play,
-    ArrowRight,
-    X
+    ArrowRight
 } from "lucide-react";
 
 export default function Hero() {
-    const [isVideoOpen, setIsVideoOpen] = useState(false);
 
     const x = useMotionValue(0);
     const y = useMotionValue(0);
@@ -37,9 +33,7 @@ export default function Hero() {
         return () => window.removeEventListener("mousemove", handleMouseMove);
     }, [x, y]);
 
-    useEffect(() => {
-        document.body.style.overflow = isVideoOpen ? "hidden" : "unset";
-    }, [isVideoOpen]);
+
 
     const containerVariants = {
         hidden: {},
@@ -124,20 +118,6 @@ export default function Hero() {
                             <ArrowRight size={18} />
                         </motion.button>
 
-                        <motion.button
-                            className="btn-secondary"
-                            onClick={() => setIsVideoOpen(true)}
-                            
-                            whileHover={{
-                                scale: 1.05,
-                                background:
-                                    "rgba(255, 255, 255, 0.1)"
-                            }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            <Play size={18} className="play-icon" />
-                            Ver Video Demo
-                        </motion.button>
                     </motion.div>
 
                     {/* Trusted */}
@@ -185,58 +165,7 @@ export default function Hero() {
                 </motion.div>
             </div>
 
-            {/* Video Modal */}
-            <AnimatePresence>
-                {isVideoOpen && (
-                    <motion.div
-                        className="video-modal-overlay"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={() => setIsVideoOpen(false)}
-                    >
-                        <motion.div
-                            className="video-modal-content"
-                            initial={{
-                                scale: 0.8,
-                                opacity: 0
-                            }}
-                            animate={{
-                                scale: 1,
-                                opacity: 1
-                            }}
-                            exit={{
-                                scale: 0.8,
-                                opacity: 0
-                            }}
-                            onClick={(e) =>
-                                e.stopPropagation()
-                            }
-                        >
-                            <button
-                                className="close-modal"
-                                onClick={() =>
-                                    setIsVideoOpen(false)
-                                }
-                            >
-                                <X size={22} />
-                            </button>
 
-                            <div className="video-wrapper">
-                                <iframe
-                                    width="100%"
-                                    height="100%"
-                                    src="https://www.youtube.com/embed/3onwqSqd3cg?si=1u-l7921r7Q9_pmw"
-                                    title="AutiSense Demo"
-                                    frameBorder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                ></iframe>
-                            </div>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
         </section>
     );
 }
