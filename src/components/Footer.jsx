@@ -66,7 +66,9 @@ const Footer = () => {
                 >
                     <h4>Contáctanos</h4>
 
-                    <p>contacto@autisense.ai</p>
+                    <p>
+                        Email: <a href="mailto:contacto@autisense.ai">contacto@autisense.ai</a>
+                    </p>
 
                     <div className="socials">
                         <a href="#" aria-label="Sitio web">
