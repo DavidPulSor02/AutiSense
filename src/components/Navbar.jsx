@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import "./Navbar.css";
 import ThemeToggle from "./ThemeToggle.jsx";
 import AutiSenseLogo from "./AutiSenseLogo.jsx";
@@ -7,6 +8,7 @@ import AutiSenseLogo from "./AutiSenseLogo.jsx";
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [active, setActive] = useState("");
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -39,12 +41,33 @@ export default function Navbar() {
         return () => observer.disconnect();
     }, []);
 
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth > 900) {
+                setMobileMenuOpen(false);
+            }
+        };
+
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    useEffect(() => {
+        document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [mobileMenuOpen]);
+
     const navLinks = [
-        { id: "hero", label: "Nosotros" },
+        { id: "hero", label: "Inicio" },
         { id: "signals", label: "Señales" },
+        { id: "team", label: "Equipo" },
         { id: "security", label: "Seguridad" },
         { id: "plans", label: "Planes" },
-        { id: "testimonials", label: "Testimonios" }
+        { id: "testimonials", label: "Testimonios" },
+        { id: "contact", label: "Contacto", external: true }
     ];
 
     const containerVariants = {
@@ -88,7 +111,7 @@ export default function Navbar() {
                         {navLinks.map((link) => (
                             <motion.a
                                 key={link.id}
-                                href={`#${link.id}`}
+                                href={link.external ? `/${link.id}` : `#${link.id}`}
                                 className={`nav-link ${active === link.id ? "active" : ""}`}
                                 variants={linkVariants}
                                 whileHover={{ scale: 1.05 }}
@@ -102,10 +125,64 @@ export default function Navbar() {
                     {/* DERECHA */}
                     <motion.div className="navbar-right" variants={linkVariants}>
                         <ThemeToggle />
+                        <button
+                            type="button"
+                            className="navbar-mobile-toggle"
+                            onClick={() => setMobileMenuOpen((prev) => !prev)}
+                            aria-label={mobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
+                        >
+                            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                        </button>
                     </motion.div>
 
                 </div>
             </motion.header>
+
+            <AnimatePresence>
+                {mobileMenuOpen && (
+                    <>
+                        <motion.div
+                            className="mobile-menu-overlay"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setMobileMenuOpen(false)}
+                        />
+                        <motion.div
+                            className="mobile-menu-panel"
+                            initial={{ x: "100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "100%" }}
+                            transition={{ type: "spring", stiffness: 220, damping: 24 }}
+                        >
+                            <div className="mobile-menu-header">
+                                <span className="navbar-title mobile-menu-title">AutiSense</span>
+                                <button
+                                    type="button"
+                                    className="navbar-mobile-toggle mobile-menu-close"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    aria-label="Cerrar menú"
+                                >
+                                    <X size={20} />
+                                </button>
+                            </div>
+
+                            <nav className="mobile-menu-links">
+                                {navLinks.map((link) => (
+                                    <a
+                                        key={link.id}
+                                        href={link.external ? `/${link.id}` : `#${link.id}`}
+                                        className={`mobile-nav-link ${active === link.id ? "active" : ""}`}
+                                        onClick={() => setMobileMenuOpen(false)}
+                                    >
+                                        {link.label}
+                                    </a>
+                                ))}
+                            </nav>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
 
         </>
     );
