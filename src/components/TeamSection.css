@@ -199,6 +199,21 @@
     font-size: 0.95rem;
 }
 
+.team-github-link {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    margin-top: 0.2rem;
+    color: var(--brand-primary);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.team-github-link:hover {
+    text-decoration: underline;
+}
+
 .team-card-info p,
 .team-card p {
     margin: 0;

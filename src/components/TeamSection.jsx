@@ -4,34 +4,48 @@ import "./TeamSection.css";
 
 const teamMembers = [
     {
-        name: "Dra. Lucía Rivera",
-        role: "Directora clínica",
-        bio: "Lidera la integración entre tecnología y atención médica familiar.",
-        avatar: "https://i.pravatar.cc/150?img=68"
+        name: "David Pulido Sorcia",
+        username: "DavidPulSor02",
+        role: "Fundador & Lead Engineer",
+        bio: "Dirige la visión técnica y el crecimiento de AutiSense con foco en producto y escalabilidad.",
+        avatar: "https://github.com/DavidPulSor02.png?size=240",
+        githubUrl: "https://github.com/DavidPulSor02"
     },
     {
-        name: "Ing. Mateo Blanco",
-        role: "Head de Producto",
-        bio: "Diseña flujos de usuario claros para equipos clínicos y familias.",
-        avatar: "https://i.pravatar.cc/150?img=56"
+        name: "Daniel López Beristain",
+        username: "daniloviu21",
+        role: "Desarrollador Frontend",
+        bio: "Impulsa la experiencia visual y la interacción del producto con enfoque en usabilidad.",
+        avatar: "https://github.com/daniloviu21.png?size=240",
+        githubUrl: "https://github.com/daniloviu21"
     },
     {
-        name: "Sofía Paredes",
-        role: "Especialista UX",
-        bio: "Optimiza cada interacción para que el uso sea rápido y confiable.",
-        avatar: "https://i.pravatar.cc/150?img=43"
+        name: "Elian Medina Cobos",
+        username: "ElianMC3",
+        role: "Desarrollador Backend",
+        bio: "Diseña la lógica de negocio y la arquitectura que soporta las soluciones clínicas.",
+        avatar: "https://github.com/ElianMC3.png?size=240",
+        githubUrl: "https://github.com/ElianMC3"
+    },
+    {
+        name: "Carlos Bañuelos Cano",
+        username: "CarlosGBC",
+        role: "Product & UX",
+        bio: "Aporta claridad de producto, experiencia y enfoque en las necesidades del usuario final.",
+        avatar: "https://github.com/CarlosGBC.png?size=240",
+        githubUrl: "https://github.com/CarlosGBC"
     }
 ];
 
 const TeamSection = () => {
-    const [selectedIndex, setSelectedIndex] = useState(1);
+    const [selectedIndex, setSelectedIndex] = useState(0);
 
     return (
         <section className="team-section" id="team">
             <div className="team-shell">
                 <div className="team-heading">
-                    <h2>Built for professionals like you.</h2>
-                    <p>Used by seriously productive people.</p>
+                    <h2>Conectado con personas reales.</h2>
+                    <p>El equipo detrás de AutiSense está formado por personas con visión técnica, clínica y productiva.</p>
                     <p className="team-subtitle">Selecciona un integrante para ver su perfil activo.</p>
                 </div>
 
@@ -60,6 +74,15 @@ const TeamSection = () => {
                                 <div className="team-card-info">
                                     <strong>{member.name}</strong>
                                     <span>{member.role}</span>
+                                    <a
+                                        href={member.githubUrl}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="team-github-link"
+                                        onClick={(event) => event.stopPropagation()}
+                                    >
+                                        @{member.username}
+                                    </a>
                                 </div>
                             </div>
                             <p>{member.bio}</p>
