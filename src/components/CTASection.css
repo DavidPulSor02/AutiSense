@@ -1,0 +1,107 @@
+.cta-section {
+  padding: 2rem 1.25rem 5rem;
+}
+
+.cta-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.cta-card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(2rem, 4vw, 3rem);
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(94, 159, 163, 0.16), rgba(75, 210, 225, 0.1));
+  border: 1px solid rgba(94, 159, 163, 0.22);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+}
+
+.cta-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(255,255,255,0.35), transparent 45%);
+  pointer-events: none;
+}
+
+.cta-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+}
+
+.cta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.75);
+  color: var(--brand-dark);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.cta-copy h2 {
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  margin: 0 0 0.8rem;
+  color: var(--text-primary);
+}
+
+.cta-copy p {
+  margin: 0 0 1.3rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.cta-btn-primary,
+.cta-btn-secondary {
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--brand-primary);
+  color: white;
+  box-shadow: 0 12px 24px rgba(94, 159, 163, 0.24);
+}
+
+.cta-btn-secondary {
+  background: rgba(255,255,255,0.8);
+  color: var(--text-primary);
+}
+
+.cta-btn-primary:hover,
+.cta-btn-secondary:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+  .cta-section {
+    padding: 1.2rem 1rem 3rem;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+  }
+
+  .cta-btn-primary,
+  .cta-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
