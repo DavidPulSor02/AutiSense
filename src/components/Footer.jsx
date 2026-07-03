@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import "./Footer.css";
 import {
     FaGlobe,
@@ -50,7 +51,7 @@ const Footer = () => {
                     <h4>Información</h4>
                     <ul>
                         <li>Sobre nosotros</li>
-                        <li>Privacidad y seguridad</li>
+                        <li><Link to="/privacidad">Privacidad y seguridad</Link></li>
                         <li>Planes de suscripción</li>
                         <li>Términos y condiciones</li>
                     </ul>

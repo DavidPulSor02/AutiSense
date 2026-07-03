@@ -6,15 +6,21 @@ import Hero from './components/Hero.jsx'
 import AboutAutisense from './components/aboutAutisense.jsx';
 import EarlySigns from './components/EarlySigns.jsx'
 import SecurityPrivacy from './components/SecurityPrivacy.jsx'
+import PrivacyPage from './components/PrivacyPage.jsx'
 import WhyChooseUs from './components/WhyChooseUs.jsx'
+import TeamSection from './components/TeamSection.jsx'
 import PricingPlans from './components/PricingPlans.jsx'
 import Testimonials from './components/Testimonials.jsx'
 import Footer from './components/Footer.jsx'
-import Chatbot from './components/ChatBot.jsx'
+import ContactPage from './components/ContactPage.jsx'
+import ContactLauncher from './components/ContactLauncher.jsx'
 import LoadingScreen from './components/LoadingScreen.jsx';
-import AppShowcase from './components/AppShowcase.jsx';
 import ScrollReveal from './components/ScrollReveal.jsx';
 import ScrollProgress from './components/ScrollProgress.jsx';
+import CTASection from './components/CTASection.jsx';
+import StatsCounter from './components/StatsCounter.jsx';
+import FAQ from './components/FAQ.jsx';
+import BackToTop from './components/BackToTop.jsx';
 import NotFound from './components/NotFound.jsx';
 
 // Main Landing Page Component
@@ -24,7 +30,7 @@ const HomePage = () => {
   useEffect(() => {
     const options = {
       root: null,
-      threshold: 0.5, // Detect when 50% of the section is visible
+      threshold: 0.25,
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -53,12 +59,6 @@ const HomePage = () => {
           <Hero />
         </div>
 
-        <div className={`section-focus-wrap ${activeSection === 'showcase' ? 'is-active' : ''}`}>
-          <ScrollReveal variant="slideUp" delay={0.2}>
-            <AppShowcase />
-          </ScrollReveal>
-        </div>
-
         <div className={`section-focus-wrap ${activeSection === 'about' ? 'is-active' : ''}`}>
           <ScrollReveal variant="fadeIn" delay={0.2}>
             <AboutAutisense />
@@ -68,6 +68,12 @@ const HomePage = () => {
         <div className={`section-focus-wrap ${activeSection === 'signals' ? 'is-active' : ''}`}>
           <ScrollReveal variant="slideUp" delay={0.2}>
             <EarlySigns />
+          </ScrollReveal>
+        </div>
+
+        <div className={`section-focus-wrap ${activeSection === 'team' ? 'is-active' : ''}`}>
+          <ScrollReveal variant="slideUp" delay={0.2}>
+            <TeamSection />
           </ScrollReveal>
         </div>
 
@@ -95,10 +101,14 @@ const HomePage = () => {
           </ScrollReveal>
         </div>
 
+        <StatsCounter />
+        <FAQ />
+        <CTASection />
         <Footer />
+        <BackToTop />
       </main>
       
-      <Chatbot />
+      <ContactLauncher />
       
       <style jsx>{`
         .section-focus-wrap {
@@ -109,8 +119,27 @@ const HomePage = () => {
         .section-focus-wrap.is-active {
           opacity: 1;
           transform: scale(1);
+        }        .section-focus-wrap {
+          position: relative;
+          isolation: isolate;
+          will-change: transform, opacity;
+          overflow: clip;
         }
-      `}</style>
+
+        .section-focus-wrap::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(94, 159, 163, 0.05) 0%, transparent 100%);
+          opacity: 0;
+          transition: opacity 0.8s ease;
+          pointer-events: none;
+          z-index: -1;
+        }
+
+        .section-focus-wrap.is-active::before {
+          opacity: 1;
+        }      `}</style>
     </div>
   );
 };
@@ -136,6 +165,9 @@ function App() {
           <Route path="/" element={
             <HomePage />
           } />
+
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/privacidad" element={<PrivacyPage />} />
 
           {/* Catch-all 404 Route */}
           <Route path="*" element={<NotFound />} />
