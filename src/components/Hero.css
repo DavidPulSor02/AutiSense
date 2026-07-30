@@ -68,18 +68,18 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(59, 130, 246, 0.1);
-    border: 1px solid rgba(59, 130, 246, 0.2);
+    background: rgba(94, 159, 163, 0.1);
+    border: 1px solid rgba(94, 159, 163, 0.2);
     padding: 6px 12px;
     border-radius: 99px;
     margin-bottom: clamp(16px, 3vw, 24px);
     font-size: 0.875rem;
-    color: #3b82f6;
+    color: var(--brand-primary);
     font-weight: 500;
 }
 
 .badge-new {
-    background: #3b82f6;
+    background: var(--brand-primary);
     color: white;
     padding: 2px 8px;
     border-radius: 99px;
@@ -99,7 +99,7 @@
 }
 
 .text-gradient {
-    background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+    background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

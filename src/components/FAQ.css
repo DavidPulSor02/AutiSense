@@ -1,0 +1,120 @@
+/* ==============================
+   FAQ SECTION
+============================== */
+
+.faq-section {
+    padding: clamp(60px, 10vh, 120px) 5%;
+    background: var(--bg-primary);
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ==============================
+   HEADER
+============================== */
+
+.faq-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.faq-header h2 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+}
+
+.faq-header span {
+    color: var(--brand-primary);
+}
+
+.faq-header p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+/* ==============================
+   ACCORDION
+============================== */
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.faq-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.faq-item:hover {
+    border-color: rgba(94, 159, 163, 0.3);
+}
+
+.faq-item.open {
+    border-color: var(--brand-primary);
+    box-shadow: 0 4px 20px rgba(94, 159, 163, 0.1);
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: inherit;
+    gap: 16px;
+}
+
+.faq-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-primary);
+    flex-shrink: 0;
+}
+
+.faq-answer-container {
+    overflow: hidden;
+}
+
+.faq-answer {
+    padding: 0 24px 24px 24px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 640px) {
+    .faq-question {
+        padding: 20px;
+        font-size: 1.05rem;
+    }
+
+    .faq-answer {
+        padding: 0 20px 20px 20px;
+        font-size: 0.95rem;
+    }
+}

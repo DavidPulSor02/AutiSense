@@ -16,7 +16,10 @@ import AppShowcase from './components/AppShowcase.jsx';
 import ScrollReveal from './components/ScrollReveal.jsx';
 import ScrollProgress from './components/ScrollProgress.jsx';
 import NotFound from './components/NotFound.jsx';
-
+import StatsCounter from './components/StatsCounter.jsx';
+import FAQ from './components/FAQ.jsx';
+import CTASection from './components/CTASection.jsx';
+import BackToTop from './components/BackToTop.jsx';
 // Main Landing Page Component
 const HomePage = () => {
   const [activeSection, setActiveSection] = useState('');
@@ -71,6 +74,12 @@ const HomePage = () => {
           </ScrollReveal>
         </div>
 
+        <div className={`section-focus-wrap ${activeSection === 'stats' ? 'is-active' : ''}`}>
+          <ScrollReveal variant="fadeIn" delay={0.2}>
+            <StatsCounter />
+          </ScrollReveal>
+        </div>
+
         <div className={`section-focus-wrap ${activeSection === 'security' ? 'is-active' : ''}`}>
           <ScrollReveal variant="scale" delay={0.2}>
             <SecurityPrivacy />
@@ -89,9 +98,21 @@ const HomePage = () => {
           </ScrollReveal>
         </div>
 
+        <div className={`section-focus-wrap ${activeSection === 'faq' ? 'is-active' : ''}`}>
+          <ScrollReveal variant="slideUp" delay={0.2}>
+            <FAQ />
+          </ScrollReveal>
+        </div>
+
         <div className={`section-focus-wrap ${activeSection === 'testimonials' ? 'is-active' : ''}`}>
           <ScrollReveal variant="slideUp" delay={0.2}>
             <Testimonials />
+          </ScrollReveal>
+        </div>
+
+        <div className={`section-focus-wrap ${activeSection === 'cta' ? 'is-active' : ''}`}>
+          <ScrollReveal variant="fadeIn" delay={0.2}>
+            <CTASection />
           </ScrollReveal>
         </div>
 
@@ -99,6 +120,7 @@ const HomePage = () => {
       </main>
       
       <Chatbot />
+      <BackToTop />
       
       <style jsx>{`
         .section-focus-wrap {
