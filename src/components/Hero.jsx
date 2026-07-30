@@ -6,13 +6,17 @@ import {
     useTransform
 } from "framer-motion";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
     Rocket,
-    ArrowRight
+    ArrowRight,
+    Sparkles,
+    ShieldCheck,
+    Brain
 } from "lucide-react";
 
 export default function Hero() {
-
+    const navigate = useNavigate();
     const x = useMotionValue(0);
     const y = useMotionValue(0);
 
@@ -40,6 +44,7 @@ export default function Hero() {
         visible: {
             transition: {
                 staggerChildren: 0.2
+                
             }
         }
     };
@@ -61,6 +66,17 @@ export default function Hero() {
     return (
         <section id="hero" className="hero">
             <div className="hero-bg-glow"></div>
+            <motion.div
+                className="hero-ambient"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.9, delay: 0.2 }}
+                aria-hidden="true"
+            >
+                <span className="ambient-orb orb-one" />
+                <span className="ambient-orb orb-two" />
+                <span className="ambient-orb orb-three" />
+            </motion.div>
 
             <div className="hero-inner">
                 <motion.div
@@ -86,39 +102,72 @@ export default function Hero() {
 
                     {/* Title */}
                     <motion.h1 variants={itemVariants}>
-                        Plataforma Inteligente <br />
-                        <span className="text-gradient">
-                            Deteccion
-                        </span> Temprana del TEA
+                        Impulsando vidas
+                        <span className="text-gradient"> con atención médica transformadora</span>
                     </motion.h1>
 
-                    {/* Description */}
                     <motion.p variants={itemVariants}>
-                        La plataforma #1 impulsada por IA para la detección temprana
-                        y acompañamiento del TEA. Tecnología que entiende,
-                        apoya y conecta.
+                        Nuestra misión es empoderar al personal médico con datos precisos, procesos más rápidos y
+                        una experiencia digital clara que mejora el resultado del paciente.
                     </motion.p>
 
-                    {/* Buttons */}
-                    <motion.div
-                        className="hero-actions"
-                        variants={itemVariants}
-                    >
+                    <motion.div className="hero-highlights" variants={itemVariants}>
+                        <motion.div className="highlight-pill" whileHover={{ y: -2, scale: 1.02 }}>
+                            <Sparkles size={14} />
+                            <span>IA clínica</span>
+                        </motion.div>
+                        <motion.div className="highlight-pill" whileHover={{ y: -2, scale: 1.02 }}>
+                            <ShieldCheck size={14} />
+                            <span>Seguridad</span>
+                        </motion.div>
+                        <motion.div className="highlight-pill" whileHover={{ y: -2, scale: 1.02 }}>
+                            <Brain size={14} />
+                            <span>Atención integral</span>
+                        </motion.div>
+                    </motion.div>
+
+                    <motion.div className="hero-actions" variants={itemVariants}>
                         <motion.button
                             className="btn-primary"
-                            onClick={() => window.location.href = "http://18.191.246.13/planes"}
+                            onClick={() => navigate('/contact')}
                             whileHover={{
                                 scale: 1.05,
-                                boxShadow:
-                                    "0 10px 30px rgba(37, 99, 235, 0.4)"
+                                boxShadow: "0 10px 30px rgba(37, 99, 235, 0.25)"
                             }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            Comenzar Evaluación
+                            Solicitar consulta
                             <ArrowRight size={18} />
                         </motion.button>
 
+                        <motion.button
+                            className="btn-secondary"
+                            onClick={() => navigate('/contact')}
+                            whileHover={{
+                                scale: 1.05,
+                                background: "rgba(255, 255, 255, 0.92)"
+                            }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            Chat con nosotros
+                        </motion.button>
                     </motion.div>
+
+                    <motion.div className="hero-metrics" variants={itemVariants}>
+                        <div className="metric-card">
+                            <strong>38+</strong>
+                            <p>expertos médicos</p>
+                        </div>
+                        <div className="metric-card">
+                            <strong>20+</strong>
+                            <p>casos clínicos</p>
+                        </div>
+                    </motion.div>
+
+                    <motion.a href="#showcase" className="hero-scroll-hint" variants={itemVariants}>
+                        Explora la plataforma
+                        <ArrowRight size={16} />
+                    </motion.a>
 
                     {/* Trusted */}
                     <motion.div
@@ -140,14 +189,14 @@ export default function Hero() {
                     </motion.div>
                 </motion.div>
 
-                {/* Image Mockup — static, premium */}
                 <motion.div
                     className="hero-image"
                     style={{ rotateX, rotateY }}
+                    whileHover={{ scale: 1.01, y: -8, transition: { duration: 0.3 } }}
                     initial={{
                         opacity: 0,
-                        scale: 0.9,
-                        y: 40
+                        scale: 0.95,
+                        y: 30
                     }}
                     animate={{
                         opacity: 1,
@@ -162,10 +211,19 @@ export default function Hero() {
                 >
                     <div className="image-glow"></div>
                     <img src={heroImage} alt="AutiSense Premium Experience" className="premium-hero-img" />
+                    <div className="hero-callout top-right">
+                        <span>38+ médicos expertos</span>
+                    </div>
+                    <div className="hero-callout bottom-left">
+                        <span>20+ logros médicos</span>
+                    </div>
+                    <div className="hero-card-overlay">
+                        <strong>Dr. Ana López</strong>
+                        <span>Especialista en desarrollo infantil</span>
+                        <button onClick={() => navigate('/contact')}>Agendar cita</button>
+                    </div>
                 </motion.div>
             </div>
-
-
         </section>
     );
 }

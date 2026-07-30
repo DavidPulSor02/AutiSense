@@ -73,6 +73,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -81,6 +82,15 @@ h1, h2, h3, h4, h5, h6 {
 
 html {
   scroll-behavior: smooth;
+}
+
+::selection {
+  background: rgba(94, 159, 163, 0.28);
+  color: var(--text-primary);
+}
+
+.landing-wrapper {
+  overflow-x: hidden;
 }
 
 section {

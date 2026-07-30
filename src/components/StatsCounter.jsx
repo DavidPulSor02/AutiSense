@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Users, Brain, ShieldCheck, Star } from "lucide-react";
 import "./StatsCounter.css";
 
@@ -95,7 +95,6 @@ const StatItem = ({ stat, index, isInView }) => {
             <p className="stat-label-text">{stat.label}</p>
         </motion.div>
     );
-
 };
 
 const StatsCounter = () => {

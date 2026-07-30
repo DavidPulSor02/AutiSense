@@ -18,7 +18,6 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-
     useEffect(() => {
         const sections = document.querySelectorAll("section");
 
@@ -40,22 +39,37 @@ export default function Navbar() {
         return () => observer.disconnect();
     }, []);
 
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth > 900) {
+                setMobileOpen(false);
+            }
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
     // Lock body scroll when mobile menu is open
     useEffect(() => {
         if (mobileOpen) {
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = "hidden";
         } else {
-            document.body.style.overflow = '';
+            document.body.style.overflow = "";
         }
-        return () => { document.body.style.overflow = ''; };
+        return () => {
+            document.body.style.overflow = "";
+        };
     }, [mobileOpen]);
 
     const navLinks = [
-        { id: "hero", label: "Nosotros" },
+        { id: "hero", label: "Inicio" },
         { id: "signals", label: "Señales" },
+        { id: "team", label: "Equipo" },
         { id: "security", label: "Seguridad" },
         { id: "plans", label: "Planes" },
-        { id: "testimonials", label: "Testimonios" }
+        { id: "testimonials", label: "Testimonios" },
+        { id: "contact", label: "Contacto", external: true }
     ];
 
     const containerVariants = {
@@ -125,7 +139,7 @@ export default function Navbar() {
                         {navLinks.map((link) => (
                             <motion.a
                                 key={link.id}
-                                href={`#${link.id}`}
+                                href={link.external ? `/${link.id}` : `#${link.id}`}
                                 className={`nav-link ${active === link.id ? "active" : ""}`}
                                 variants={linkVariants}
                                 whileHover={{ scale: 1.05 }}
@@ -181,7 +195,7 @@ export default function Navbar() {
                                 {navLinks.map((link) => (
                                     <motion.a
                                         key={link.id}
-                                        href={`#${link.id}`}
+                                        href={link.external ? `/${link.id}` : `#${link.id}`}
                                         className={`mobile-nav-link ${active === link.id ? "active" : ""}`}
                                         variants={mobileLinkVariants}
                                         onClick={() => setMobileOpen(false)}
